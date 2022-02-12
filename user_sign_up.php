@@ -29,6 +29,25 @@ if (isset($_POST['create_account'])) {
             $err = "Phone Number Or Email Already Exists";
         } else {
             /* Insert Details */
+            $sql = "INSERT INTO users (user_name, user_number, user_idno, user_email, user_password, user_address, user_phoneno, user_access_level, user_acc_status)
+            VALUES(?,?,?,?,?,?,?,?,?)";
+            $prepare = $mysqli->prepare($sql);
+            $bind = $prepare0->bind_param(
+                'sssssssss',
+                $user_name,
+                $user_number,
+                $user_idno,
+                $user_email,
+                $user_password,
+                $user_access_level,
+                $user_acc_status
+            );
+            $prepare->execute();
+            if ($prepare) {
+                $success = "Member Account Created, Proceed To Login";
+            } else {
+                $err = "Failed!, Please Try Again";
+            }
         }
     }
 }
