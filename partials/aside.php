@@ -30,50 +30,47 @@
         <!-- User info -->
         <!-- Actions -->
         <div class="w-100 mt-4 actions d-flex justify-content-between">
-            <a href="user/profile.html" class="action-item action-item-lg text-white pl-0">
+            <a href="profile" class="action-item action-item-lg text-white pl-0">
                 <i class="far fa-user"></i>
             </a>
-            <a href="#modal-chat" class="action-item action-item-lg text-white" data-toggle="modal">
+            <a href="notifications" class="action-item action-item-lg text-white pr-0">
                 <i class="far fa-comment-alt"></i>
             </a>
-            <a href="shop/invoices.html" class="action-item action-item-lg text-white pr-0">
+            <a href="invoices" class="action-item action-item-lg text-white pr-0">
                 <i class="far fa-receipt"></i>
             </a>
         </div>
     </div>
     <!-- Application nav -->
     <div class="nav-application clearfix">
-        <a href="home.html" class="btn btn-square text-sm active">
+        <a href="dashboard" class="btn btn-square text-sm">
             <span class="btn-inner--icon d-block"><i class="far fa-home fa-2x"></i></span>
             <span class="btn-inner--icon d-block pt-2">Home</span>
         </a>
-        <a href="project/card-listing.html" class="btn btn-square text-sm">
+        <a href="categories" class="btn btn-square text-sm">
             <span class="btn-inner--icon d-block"><i class="far fa-project-diagram fa-2x"></i></span>
-            <span class="btn-inner--icon d-block pt-2">Projects</span>
+            <span class="btn-inner--icon d-block pt-2">Categories</span>
         </a>
-        <a href="task/table-listing.html" class="btn btn-square text-sm">
+        <a href="products" class="btn btn-square text-sm">
             <span class="btn-inner--icon d-block"><i class="far fa-tasks fa-2x"></i></span>
-            <span class="btn-inner--icon d-block pt-2">Tasks</span>
+            <span class="btn-inner--icon d-block pt-2">Products</span>
         </a>
-        <a href="task/kanban-board.html" class="btn btn-square text-sm">
-            <span class="btn-inner--icon d-block"><i class="far fa-columns fa-2x"></i></span>
-            <span class="btn-inner--icon d-block pt-2">Kanban</span>
-        </a>
-        <a href="user/card-listing.html" class="btn btn-square text-sm">
+        <a href="farmers" class="btn btn-square text-sm">
             <span class="btn-inner--icon d-block"><i class="far fa-users-cog fa-2x"></i></span>
-            <span class="btn-inner--icon d-block pt-2">Users</span>
+            <span class="btn-inner--icon d-block pt-2">Farmers</span>
         </a>
-        <a href="user/profile.html" class="btn btn-square text-sm">
-            <span class="btn-inner--icon d-block"><i class="far fa-user-ninja fa-2x"></i></span>
-            <span class="btn-inner--icon d-block pt-2">Profile</span>
-        </a>
-        <a href="shop/invoices.html" class="btn btn-square text-sm">
+        <a href="invoices" class="btn btn-square text-sm">
             <span class="btn-inner--icon d-block"><i class="far fa-receipt fa-2x"></i></span>
             <span class="btn-inner--icon d-block pt-2">Invoices</span>
         </a>
-        <a href="widgets.html" class="btn btn-square text-sm">
-            <span class="btn-inner--icon d-block"><i class="far fa-cogs fa-2x"></i></span>
-            <span class="btn-inner--icon d-block pt-2">Widgets</span>
+        <a href="paymentsl" class="btn btn-square text-sm">
+            <span class="btn-inner--icon d-block"><i class="far fa-hand-holding-usd fa-2x"></i></span>
+            <span class="btn-inner--icon d-block pt-2">Payments</span>
+        </a>
+
+        <a href="reports" class="btn btn-square text-sm">
+            <span class="btn-inner--icon d-block"><i class="far fa-file fa-2x"></i></span>
+            <span class="btn-inner--icon d-block pt-2">Reports</span>
         </a>
     </div>
 </div>
