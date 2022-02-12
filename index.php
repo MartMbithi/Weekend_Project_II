@@ -1,4 +1,5 @@
 <?php
+session_start();
 /* Handle Login */
 if (isset($_POST['login'])) {
     $success = "Login Successful";
