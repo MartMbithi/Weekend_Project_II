@@ -1,23 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-
-<!-- Mirrored from preview.webpixels.io/purpose-application-ui-kit/application/authentication/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 Mar 2021 13:00:46 GMT -->
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Purpose Application UI is the following chapter we've finished in order to create a complete and robust solution next to the already known Purpose Website UI.">
-    <meta name="author" content="Webpixels">
-    <title>Purpose – Application UI Kit</title>
-    <!-- Favicon -->
-    <link rel="icon" href="../../assets/img/brand/favicon.png" type="image/png">
-    <!-- Font Awesome 5 -->
-    <link rel="stylesheet" href="../../assets/libs/%40fortawesome/fontawesome-pro/css/all.min.css"><!-- Purpose CSS -->
-    <link rel="stylesheet" href="../../assets/css/purpose.css" id="stylesheet">
-</head>
+<?php
+/* Load Header Partial */
+require_once('../partials/head.php');
+?>
 
 <body class="application application-offset">
     <!-- Chat modal -->
