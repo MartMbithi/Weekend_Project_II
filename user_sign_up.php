@@ -17,7 +17,7 @@ if (isset($_POST['create_account'])) {
     $user_phoneno = $_POST['user_phoneno'];
     $user_address = $_POST['user_address'];
 
-    /* Check If National Id Number Exists */
+    /* Avoid Data Replication Exists */
     $sql = "SELECT * FROM  users  
     WHERE user_idno = '$user_idno' 
     || user_phoneno = '$user_phoneno' 
