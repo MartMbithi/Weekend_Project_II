@@ -14,10 +14,14 @@
     <!-- Font Awesome 5 -->
     <link rel="stylesheet" href="assets/libs/%40fortawesome/fontawesome-pro/css/all.min.css">
     <link rel="stylesheet" href="assets/css/purpose.css" id="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" id="stylesheet">
+    <!-- JQuerry -->
+    <link rel="stylesheet" href="assets/css/jquery-ui.min.css" id="stylesheet">
     <!-- Select2 -->
     <link rel="stylesheet" href="assets/libs/select2/css/select2.min.css">
     <!-- SweetAlert2 -->
-    <link rel="stylesheet" href="assets/libs/sweetalert2/sweetalert2.min.css">
+    <link rel="stylesheet" href="assets/libs/sweetalert2/dist/sweetalert2.min.css">
     <!-- Data Tables CDN-->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css" />

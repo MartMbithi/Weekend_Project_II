@@ -1,4 +1,3 @@
-<!-- Scripts -->
 <!-- Core JS - includes jquery, bootstrap, popper, in-view and sticky-kit -->
 <script src="assets/js/purpose.core.js"></script>
 <!-- Purpose JS -->
@@ -8,7 +7,7 @@
 <!-- Custom Select 2 Bootsrap -->
 <script src="assets/libs/select2/js/select2.min.js"></script>
 <!-- Sweet Alerts -->
-<script src="../assets/libs/sweetalert2/sweetalert2.min.js"></script>
+<script src="assets/libs/sweetalert2/dist/sweetalert2.min.js"></script>
 <!-- Custom File  -->
 <script src="assets/libs/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- Data Tables CDN -->
