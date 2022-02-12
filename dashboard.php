@@ -541,7 +541,7 @@ require_once('partials/analytics.php');
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h6 class="mb-0">Recent Registred Farmers</h6>
+                                <h6 class="text-bold">Recent Registred Farmers</h6>
                             </div>
                             <div class="card-body py-3 flex-grow-1">
                                 <table class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -564,7 +564,6 @@ require_once('partials/analytics.php');
                                         while ($users = $res->fetch_object()) {
                                         ?>
                                             <tr>
-                                                <td><?php echo $users->user_number; ?></td>
                                                 <td><?php echo $users->user_number; ?></td>
                                                 <td><?php echo $users->user_name; ?></td>
                                                 <td><?php echo $users->user_idno; ?></td>
