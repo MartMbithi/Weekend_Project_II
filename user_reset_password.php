@@ -11,7 +11,7 @@ if (isset($_POST['reset_password'])) {
     $res = mysqli_query($mysqli, $sql);
     if (mysqli_num_rows($res) > 0) {
         /* Redirect User To Confirm Password */
-        $_SESSION['success'] = 'Your Member Account Has Been Created, Proceed To Login';
+        $_SESSION['success'] = 'Password Reset Token Generated, Proceed To Confirm Password';
         $_SESSION['user_idno'] = $user_idno;
         header('Location: user_confirm_password');
         exit;
