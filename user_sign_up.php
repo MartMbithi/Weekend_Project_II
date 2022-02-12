@@ -18,7 +18,19 @@ if (isset($_POST['create_account'])) {
     $user_address = $_POST['user_address'];
 
     /* Check If National Id Number Exists */
-    
+    $sql = "SELECT * FROM  users  WHERE user_idno = '$user_idno'";
+    $res = mysqli_query($mysqli, $sql);
+    if (mysqli_num_rows($res) > 0) {
+        $users = mysqli_fetch_assoc($res);
+        /* If ID Number Already Exists Exit */
+        if ($users['user_idno'] == $user_idno) {
+            $err = "National ID Number Already Exists";
+        } else if ($users['user_phoneno']  == $user_phoneno || $users['user_email'] == $user_email) {
+            $err = "Phone Number Or Email Already Exists";
+        } else {
+            /* Insert Details */
+        }
+    }
 }
 /* Load Header Partial */
 require_once('partials/head.php');
