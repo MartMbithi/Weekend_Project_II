@@ -544,7 +544,39 @@ require_once('partials/analytics.php');
                                 <h6 class="mb-0">Recent Registred Farmers</h6>
                             </div>
                             <div class="card-body py-3 flex-grow-1">
-
+                                <table class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>Number</th>
+                                            <th>Names</th>
+                                            <th>ID No</th>
+                                            <th>Email</th>
+                                            <th>Phone No</th>
+                                            <th>Address</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $ret = "SELECT * FROM users WHERE user_access_level ='Farmer'";
+                                        $stmt = $mysqli->prepare($ret);
+                                        $stmt->execute(); //ok
+                                        $res = $stmt->get_result();
+                                        while ($users = $res->fetch_object()) {
+                                        ?>
+                                            <tr>
+                                                <td><?php echo $users->user_number; ?></td>
+                                                <td><?php echo $users->user_number; ?></td>
+                                                <td><?php echo $users->user_name; ?></td>
+                                                <td><?php echo $users->user_idno; ?></td>
+                                                <td><?php echo $users->user_email; ?></td>
+                                                <td><?php echo $users->user_phoneno; ?></td>
+                                                <td><?php echo $users->user_address; ?></td>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
