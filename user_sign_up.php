@@ -18,36 +18,43 @@ if (isset($_POST['create_account'])) {
     $user_address = $_POST['user_address'];
 
     /* Check If National Id Number Exists */
-    $sql = "SELECT * FROM  users  WHERE user_idno = '$user_idno'";
+    $sql = "SELECT * FROM  users  
+    WHERE user_idno = '$user_idno' 
+    || user_phoneno = '$user_phoneno' 
+    || user_email = '$user_email'";
     $res = mysqli_query($mysqli, $sql);
     if (mysqli_num_rows($res) > 0) {
         $users = mysqli_fetch_assoc($res);
         /* If ID Number Already Exists Exit */
-        if ($users['user_idno'] == $user_idno) {
-            $err = "National ID Number Already Exists";
-        } else if ($users['user_phoneno']  == $user_phoneno || $users['user_email'] == $user_email) {
-            $err = "Phone Number Or Email Already Exists";
+        if (
+            $users['user_idno'] == $user_idno
+            || $users['user_phoneno'] == $user_phoneno
+            || $users['user_email'] == $user_email
+        ) {
+            $err = "National ID Number, Email Or Phone Number Already Exists";
+        }
+    } else {
+        /* Insert Details */
+        $sql = "INSERT INTO users (user_name, user_number, user_idno, user_email, user_password, user_address, user_phoneno, user_access_level, user_acc_status)
+        VALUES(?,?,?,?,?,?,?,?,?)";
+        $prepare = $mysqli->prepare($sql);
+        $bind = $prepare->bind_param(
+            'sssssssss',
+            $user_name,
+            $user_number,
+            $user_idno,
+            $user_email,
+            $user_password,
+            $user_address,
+            $user_phoneno,
+            $user_access_level,
+            $user_acc_status
+        );
+        $prepare->execute();
+        if ($prepare) {
+            $success = "Member Account Created, Proceed To Login";
         } else {
-            /* Insert Details */
-            $sql = "INSERT INTO users (user_name, user_number, user_idno, user_email, user_password, user_address, user_phoneno, user_access_level, user_acc_status)
-            VALUES(?,?,?,?,?,?,?,?,?)";
-            $prepare = $mysqli->prepare($sql);
-            $bind = $prepare0->bind_param(
-                'sssssssss',
-                $user_name,
-                $user_number,
-                $user_idno,
-                $user_email,
-                $user_password,
-                $user_access_level,
-                $user_acc_status
-            );
-            $prepare->execute();
-            if ($prepare) {
-                $success = "Member Account Created, Proceed To Login";
-            } else {
-                $err = "Failed!, Please Try Again";
-            }
+            $err = "Failed!, Please Try Again";
         }
     }
 }
