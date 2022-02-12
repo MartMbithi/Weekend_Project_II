@@ -17899,6 +17899,9 @@ textarea[resize="horizontal"] {
   background-color: #36b37e;
   border-bottom-left-radius: 2.5rem;
 }
+.nav_bg{
+  background-color: #36b37e;
+}
 @media (min-width: 576px) {
   .docs .container-fluid {
     padding-left: 20px;
