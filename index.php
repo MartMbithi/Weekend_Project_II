@@ -1,6 +1,6 @@
 <?php
 /* Handle Login */
-if(isset($_POST['login'])){
+if (isset($_POST['login'])) {
     $success = "Login Successful";
 }
 /* Load Header Partial */
@@ -17,7 +17,7 @@ require_once('partials/head.php');
                 <div class="min-vh-100 py-5 d-flex align-items-center">
                     <div class="w-100">
                         <div class="row justify-content-center">
-                            <div class="col-sm-8 col-lg-4">
+                            <div class="col-sm-8 col-lg-5">
                                 <div class="card shadow zindex-100 mb-0">
                                     <div class="card-body px-md-5 py-5">
                                         <div class="mb-5 text-center">
@@ -41,7 +41,7 @@ require_once('partials/head.php');
                                                         <label class="form-control-label">Password</label>
                                                     </div>
                                                     <div class="mb-2">
-                                                        <a href="#!" class="small text-muted text-underline--dashed border-success">Lost Password?</a>
+                                                        <a href="user_reset_password" class="small text-muted text-underline--dashed border-success">Lost Password?</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-merge">
