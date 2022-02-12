@@ -392,7 +392,7 @@ require_once('partials/analytics.php');
                                 <div class="row">
                                     <div class="col">
                                         <h6 class="text-muted mb-1">Farmers</h6>
-                                        <span class="h3 font-weight-bold mb-0 ">7.500</span>
+                                        <span class="h3 font-weight-bold mb-0 "><?php echo $farmers; ?></span>
                                     </div>
                                     <div class="col-auto">
                                         <i class="far fa-users-cog text-warning fa-4x"></i>
@@ -408,7 +408,7 @@ require_once('partials/analytics.php');
                                 <div class="row">
                                     <div class="col">
                                         <h6 class="text-muted mb-1">Staffs</h6>
-                                        <span class="h3 font-weight-bold mb-0 ">34</span>
+                                        <span class="h3 font-weight-bold mb-0 "><?php echo $staffs; ?></span>
                                     </div>
                                     <div class="col-auto">
                                         <i class="far fa-users text-warning fa-4x"></i>
@@ -424,7 +424,7 @@ require_once('partials/analytics.php');
                                 <div class="row">
                                     <div class="col">
                                         <h6 class="text-muted mb-1">Unpaid Invoices</h6>
-                                        <span class="h3 font-weight-bold mb-0 ">68</span>
+                                        <span class="h3 font-weight-bold mb-0 "><?php echo $unpaid_orders; ?></span>
                                     </div>
                                     <div class="col-auto">
                                         <i class="far fa-exclamation text-warning fa-4x"></i>
@@ -440,7 +440,7 @@ require_once('partials/analytics.php');
                                 <div class="row">
                                     <div class="col">
                                         <h6 class="text-muted mb-1">Paid Invoices</h6>
-                                        <span class="h3 font-weight-bold mb-0 ">12</span>
+                                        <span class="h3 font-weight-bold mb-0 "><?php echo $paid_orders; ?></span>
                                     </div>
                                     <div class="col-auto">
                                         <i class="far fa-file-check text-warning fa-4x"></i>
@@ -450,14 +450,14 @@ require_once('partials/analytics.php');
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-6 col-md-6">
                         <div class="card card-stats">
                             <!-- Card body -->
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
                                         <h6 class="text-muted mb-1">Total Orders</h6>
-                                        <span class="h3 font-weight-bold mb-0 ">7.500</span>
+                                        <span class="h3 font-weight-bold mb-0 "><?php echo $all_orders; ?></span>
                                     </div>
                                     <div class="col-auto">
                                         <i class="far fa-calendar-check text-warning fa-4x"></i>
@@ -467,30 +467,15 @@ require_once('partials/analytics.php');
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
-                        <div class="card card-stats">
-                            <!-- Card body -->
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                        <h6 class="text-muted mb-1">Pending Payments</h6>
-                                        <span class="h3 font-weight-bold mb-0 ">7.500</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="far fa-ban text-warning fa-4x"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6">
+
+                    <div class="col-xl-6 col-md-6">
                         <div class="card card-stats">
                             <!-- Card body -->
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
                                         <h6 class="text-muted mb-1">Total Payments</h6>
-                                        <span class="h3 font-weight-bold mb-0 ">7.500</span>
+                                        <span class="h3 font-weight-bold mb-0 ">Ksh <?php echo $total_payments; ?></span>
                                     </div>
                                     <div class="col-auto">
                                         <i class="far fa-hand-holding-usd text-warning fa-4x"></i>
