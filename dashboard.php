@@ -526,6 +526,7 @@ require_once('partials/analytics.php');
                                                 <td>
                                                     <b># :</b> <?php echo $orders->order_code; ?><br>
                                                     <b>QTY :</b> <?php echo $order->order_qty; ?> Kgs<br>
+                                                    <b>Status : </b> <?php echo $order->order_status; ?><br>
                                                     <b>Delivery Date: </b> <?php echo date('d M Y', strtotime($order->order_delivery_time)); ?>
                                                 </td>
                                             </tr>
