@@ -65,7 +65,7 @@ require_once('partials/head.php');
                 <div class="min-vh-100 py-5 d-flex align-items-center">
                     <div class="w-100">
                         <div class="row justify-content-center">
-                            <div class="col-sm-8 col-lg-5">
+                            <div class="col-sm-8 col-lg-6">
                                 <div class="card shadow zindex-100 mb-0">
                                     <div class="card-body px-md-5 py-5">
                                         <div class="mb-5 text-center">
@@ -98,7 +98,7 @@ require_once('partials/head.php');
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i class="far fa-phone"></i></span>
                                                     </div>
-                                                    <input type="text" name="user_number" class="form-control" id="input-email">
+                                                    <input type="text" name="user_phoneno" class="form-control" id="input-email">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -107,7 +107,16 @@ require_once('partials/head.php');
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i class="far fa-envelope"></i></span>
                                                     </div>
-                                                    <input type="email" name="user_idno" class="form-control" id="input-email">
+                                                    <input type="email" name="user_email" class="form-control" id="input-email">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-control-label">Address</label>
+                                                <div class="input-group input-group-merge">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="far fa-map-pin"></i></span>
+                                                    </div>
+                                                    <input type="text" name="user_address" class="form-control" id="input-email">
                                                 </div>
                                             </div>
 
