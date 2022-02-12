@@ -21,7 +21,7 @@ require_once('partials/head.php');
                                     <div class="card-body px-md-5 py-5">
                                         <div class="mb-5 text-center">
                                             <h6 class="h3">Reset Password</h6>
-                                            <p class="text-muted  mb-0">Welcome to Uasin Gishu County Cereals And Produce Board Information Management System</p>
+                                            <p class="text-muted  mb-0">Enter your national id number to reset your member portal password</p>
                                         </div>
                                         <span class="clearfix"></span>
                                         <form role="form" method="POST">
@@ -29,7 +29,7 @@ require_once('partials/head.php');
                                                 <label class="form-control-label">National ID Number</label>
                                                 <div class="input-group input-group-merge">
                                                     <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="far fa-user"></i></span>
+                                                        <span class="input-group-text"><i class="far fa-tag"></i></span>
                                                     </div>
                                                     <input type="text" name="user_idno" required class="form-control" id="input-email">
                                                 </div>
