@@ -8,6 +8,10 @@
 <script src="assets/libs/select2/js/select2.min.js"></script>
 <!-- Sweet Alerts -->
 <script src="assets/libs/sweetalert2/dist/sweetalert2.min.js"></script>
+<!-- Dragular -->
+<script src="assets/libs/dragula/dist/dragula.min.js"></script>
+<!-- Moment Min Js -->
+<script src="assets/libs/moment/min/moment.min.js"></script>
 <!-- Custom File  -->
 <script src="assets/libs/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- Data Tables CDN -->

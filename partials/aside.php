@@ -59,6 +59,10 @@
             <span class="btn-inner--icon d-block"><i class="far fa-users-cog fa-2x"></i></span>
             <span class="btn-inner--icon d-block pt-2">Farmers</span>
         </a>
+        <a href="farmers" class="btn btn-square text-sm">
+            <span class="btn-inner--icon d-block"><i class="far fa-users fa-2x"></i></span>
+            <span class="btn-inner--icon d-block pt-2">Staffs</span>
+        </a>
         <a href="invoices" class="btn btn-square text-sm">
             <span class="btn-inner--icon d-block"><i class="far fa-receipt fa-2x"></i></span>
             <span class="btn-inner--icon d-block pt-2">Invoices</span>
