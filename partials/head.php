@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Webpixels">
-    <title></title>
+    <title>UASIN-GISHU COUNTY : CEREALS AND PRODUCE BOARD MANAGEMENT SYSTEM</title>
     <!-- Favicon -->
-    <link rel="icon" href="assets/img/brand/favicon.png" type="image/png">
+    <link rel="icon" href="assets/img/brand/main_logo.png" type="image/png">
     <!-- Font Awesome 5 -->
     <link rel="stylesheet" href="assets/libs/%40fortawesome/fontawesome-pro/css/all.min.css">
     <link rel="stylesheet" href="assets/css/purpose.css" id="stylesheet">
@@ -28,3 +28,9 @@
     <!-- Floara Editor CDN -->
     <link href='https://cdn.jsdelivr.net/npm/froala-editor@4.0.8/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' />
 </head>
+<?php
+/* Alert Sesion Via Alerts */
+if (isset($_SESSION['success'])) {
+    $success = $_SESSION['success'];
+}
+?>

@@ -52,7 +52,10 @@ if (isset($_POST['create_account'])) {
         );
         $prepare->execute();
         if ($prepare) {
-            $success = "Member Account Created, Proceed To Login";
+            /* Pass This Alert Via Session */
+            $_SESSION['success'] = 'Your Member Account Has Been Created, Proceed To Login';
+            header('Location: index');
+            exit;
         } else {
             $err = "Failed!, Please Try Again";
         }
