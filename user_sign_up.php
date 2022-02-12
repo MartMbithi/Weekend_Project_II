@@ -1,6 +1,24 @@
 <?php
+session_start();
+require_once 'config/config.php';
+require_once 'config/codeGen.php';
 /* Handle Sign In */
 if (isset($_POST['create_account'])) {
+    /* Constant Values */
+    $user_number = $a . $b;
+    $user_access_level = 'Farmer';
+    $user_acc_status = 'Unverified';
+
+    /* Dynamic Values */
+    $user_name =  $_POST['user_name'];
+    $user_idno = $_POST['user_idno'];
+    $user_email = $_POST['user_email'];
+    $user_password = sha1(md5($_POST['user_password']));
+    $user_phoneno = $_POST['user_phoneno'];
+    $user_address = $_POST['user_address'];
+
+    /* Check If National Id Number Exists */
+    
 }
 /* Load Header Partial */
 require_once('partials/head.php');
