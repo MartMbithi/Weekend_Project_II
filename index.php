@@ -1,4 +1,8 @@
 <?php
+/* Handle Login */
+if(isset($_POST['login'])){
+    $success = "Login Successful";
+}
 /* Load Header Partial */
 require_once('partials/head.php');
 ?>
