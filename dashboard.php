@@ -565,7 +565,16 @@ require_once('partials/analytics.php');
                                         ?>
                                             <tr>
                                                 <td><?php echo $users->user_number; ?></td>
-                                                <td><?php echo $users->user_name; ?></td>
+                                                <td>
+                                                    <?php echo $users->user_name;
+                                                    /* Green Badge If Verified */
+                                                    if ($users->user_acc_status == 'Verified') {
+                                                    ?>
+                                                        <span class="badge badge-success"><i class="fas fa-check"></i> Verified</span>
+                                                    <?php } else { ?>
+                                                        <span class="badge badge-danger"><i class="fas fa-exclamation"></i> Pending</span>
+                                                    <?php } ?>
+                                                </td>
                                                 <td><?php echo $users->user_idno; ?></td>
                                                 <td><?php echo $users->user_email; ?></td>
                                                 <td><?php echo $users->user_phoneno; ?></td>
