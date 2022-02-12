@@ -1,439 +1,34 @@
 <?php
 /* Load Header Partial */
-require_once('../partials/head.php');
+require_once('partials/head.php');
 ?>
 
 <body class="application application-offset">
-    <!-- Chat modal -->
-    <!-- Customizer modal -->
-    <div class="modal fade fixed-right" id="modal-chat" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-vertical" role="document">
-            <div class="modal-content">
-                <div class="modal-header align-items-center">
-                    <div class="modal-title">
-                        <h6 class="mb-0">Chat</h6>
-                        <span class="d-block text-sm">3 new conversations</span>
-                    </div>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="scrollbar-inner">
-                    <!-- Chat contacts -->
-                    <div class="list-group list-group-flush">
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="">
-                                <div>
-                                    <div class="avatar-parent-child">
-                                        <img alt="Image placeholder" src="../../assets/img/theme/light/team-1-800x800.jpg" class="avatar  rounded-circle">
-                                        <span class="avatar-child avatar-badge bg-warning"></span>
-                                    </div>
-                                </div>
-                                <div class="flex-fill ml-3">
-                                    <h6 class="text-sm mb-0">John Sullivan</h6>
-                                    <p class="text-sm mb-0">
-                                        Working remotely
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="">
-                                <div>
-                                    <div class="avatar-parent-child">
-                                        <img alt="Image placeholder" src="../../assets/img/theme/light/team-2-800x800.jpg" class="avatar  rounded-circle">
-                                        <span class="avatar-child avatar-badge bg-warning"></span>
-                                    </div>
-                                </div>
-                                <div class="flex-fill ml-3">
-                                    <h6 class="text-sm mb-0">Heather Wright</h6>
-                                    <p class="text-sm mb-0">
-                                        Working remotely
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="">
-                                <div>
-                                    <div class="avatar-parent-child">
-                                        <img alt="Image placeholder" src="../../assets/img/theme/light/team-3-800x800.jpg" class="avatar  rounded-circle">
-                                        <span class="avatar-child avatar-badge bg-warning"></span>
-                                    </div>
-                                </div>
-                                <div class="flex-fill ml-3">
-                                    <h6 class="text-sm mb-0">James Lewis</h6>
-                                    <p class="text-sm mb-0">
-                                        Working remotely
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="">
-                                <div>
-                                    <div class="avatar-parent-child">
-                                        <img alt="Image placeholder" src="../../assets/img/theme/light/team-4-800x800.jpg" class="avatar  rounded-circle">
-                                        <span class="avatar-child avatar-badge bg-warning"></span>
-                                    </div>
-                                </div>
-                                <div class="flex-fill ml-3">
-                                    <h6 class="text-sm mb-0">Martin Gray</h6>
-                                    <p class="text-sm mb-0">
-                                        Working remotely
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="">
-                                <div>
-                                    <div class="avatar-parent-child">
-                                        <img alt="Image placeholder" src="../../assets/img/theme/light/team-5-800x800.jpg" class="avatar  rounded-circle">
-                                        <span class="avatar-child avatar-badge bg-warning"></span>
-                                    </div>
-                                </div>
-                                <div class="flex-fill ml-3">
-                                    <h6 class="text-sm mb-0">John Snow</h6>
-                                    <p class="text-sm mb-0">
-                                        Working remotely
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="">
-                                <div>
-                                    <div class="avatar-parent-child">
-                                        <img alt="Image placeholder" src="../../assets/img/theme/light/team-1-800x800.jpg" class="avatar  rounded-circle">
-                                        <span class="avatar-child avatar-badge bg-warning"></span>
-                                    </div>
-                                </div>
-                                <div class="flex-fill ml-3">
-                                    <h6 class="text-sm mb-0">John Michael</h6>
-                                    <p class="text-sm mb-0">
-                                        Working remotely
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="">
-                                <div>
-                                    <div class="avatar-parent-child">
-                                        <img alt="Image placeholder" src="../../assets/img/theme/light/team-2-800x800.jpg" class="avatar  rounded-circle">
-                                        <span class="avatar-child avatar-badge bg-warning"></span>
-                                    </div>
-                                </div>
-                                <div class="flex-fill ml-3">
-                                    <h6 class="text-sm mb-0">Monroe Parker</h6>
-                                    <p class="text-sm mb-0">
-                                        Working remotely
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="">
-                                <div>
-                                    <div class="avatar-parent-child">
-                                        <img alt="Image placeholder" src="../../assets/img/theme/light/team-3-800x800.jpg" class="avatar  rounded-circle">
-                                        <span class="avatar-child avatar-badge bg-warning"></span>
-                                    </div>
-                                </div>
-                                <div class="flex-fill ml-3">
-                                    <h6 class="text-sm mb-0">Danielle Levin</h6>
-                                    <p class="text-sm mb-0">
-                                        Working remotely
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="">
-                                <div>
-                                    <div class="avatar-parent-child">
-                                        <img alt="Image placeholder" src="../../assets/img/theme/light/team-4-800x800.jpg" class="avatar  rounded-circle">
-                                        <span class="avatar-child avatar-badge bg-warning"></span>
-                                    </div>
-                                </div>
-                                <div class="flex-fill ml-3">
-                                    <h6 class="text-sm mb-0">Jesse Stevens</h6>
-                                    <p class="text-sm mb-0">
-                                        Working remotely
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="">
-                                <div>
-                                    <div class="avatar-parent-child">
-                                        <img alt="Image placeholder" src="../../assets/img/theme/light/team-5-800x800.jpg" class="avatar  rounded-circle">
-                                        <span class="avatar-child avatar-badge bg-warning"></span>
-                                    </div>
-                                </div>
-                                <div class="flex-fill ml-3">
-                                    <h6 class="text-sm mb-0">John Snow</h6>
-                                    <p class="text-sm mb-0">
-                                        Working remotely
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="">
-                                <div>
-                                    <div class="avatar-parent-child">
-                                        <img alt="Image placeholder" src="../../assets/img/theme/light/team-1-800x800.jpg" class="avatar  rounded-circle">
-                                        <span class="avatar-child avatar-badge bg-warning"></span>
-                                    </div>
-                                </div>
-                                <div class="flex-fill ml-3">
-                                    <h6 class="text-sm mb-0">John Sullivan</h6>
-                                    <p class="text-sm mb-0">
-                                        Working remotely
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="">
-                                <div>
-                                    <div class="avatar-parent-child">
-                                        <img alt="Image placeholder" src="../../assets/img/theme/light/team-2-800x800.jpg" class="avatar  rounded-circle">
-                                        <span class="avatar-child avatar-badge bg-warning"></span>
-                                    </div>
-                                </div>
-                                <div class="flex-fill ml-3">
-                                    <h6 class="text-sm mb-0">Heather Wright</h6>
-                                    <p class="text-sm mb-0">
-                                        Working remotely
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="">
-                                <div>
-                                    <div class="avatar-parent-child">
-                                        <img alt="Image placeholder" src="../../assets/img/theme/light/team-3-800x800.jpg" class="avatar  rounded-circle">
-                                        <span class="avatar-child avatar-badge bg-warning"></span>
-                                    </div>
-                                </div>
-                                <div class="flex-fill ml-3">
-                                    <h6 class="text-sm mb-0">James Lewis</h6>
-                                    <p class="text-sm mb-0">
-                                        Working remotely
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="">
-                                <div>
-                                    <div class="avatar-parent-child">
-                                        <img alt="Image placeholder" src="../../assets/img/theme/light/team-4-800x800.jpg" class="avatar  rounded-circle">
-                                        <span class="avatar-child avatar-badge bg-warning"></span>
-                                    </div>
-                                </div>
-                                <div class="flex-fill ml-3">
-                                    <h6 class="text-sm mb-0">Martin Gray</h6>
-                                    <p class="text-sm mb-0">
-                                        Working remotely
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="">
-                                <div>
-                                    <div class="avatar-parent-child">
-                                        <img alt="Image placeholder" src="../../assets/img/theme/light/team-5-800x800.jpg" class="avatar  rounded-circle">
-                                        <span class="avatar-child avatar-badge bg-warning"></span>
-                                    </div>
-                                </div>
-                                <div class="flex-fill ml-3">
-                                    <h6 class="text-sm mb-0">John Snow</h6>
-                                    <p class="text-sm mb-0">
-                                        Working remotely
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="">
-                                <div>
-                                    <div class="avatar-parent-child">
-                                        <img alt="Image placeholder" src="../../assets/img/theme/light/team-1-800x800.jpg" class="avatar  rounded-circle">
-                                        <span class="avatar-child avatar-badge bg-warning"></span>
-                                    </div>
-                                </div>
-                                <div class="flex-fill ml-3">
-                                    <h6 class="text-sm mb-0">John Michael</h6>
-                                    <p class="text-sm mb-0">
-                                        Working remotely
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="">
-                                <div>
-                                    <div class="avatar-parent-child">
-                                        <img alt="Image placeholder" src="../../assets/img/theme/light/team-2-800x800.jpg" class="avatar  rounded-circle">
-                                        <span class="avatar-child avatar-badge bg-warning"></span>
-                                    </div>
-                                </div>
-                                <div class="flex-fill ml-3">
-                                    <h6 class="text-sm mb-0">Monroe Parker</h6>
-                                    <p class="text-sm mb-0">
-                                        Working remotely
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="">
-                                <div>
-                                    <div class="avatar-parent-child">
-                                        <img alt="Image placeholder" src="../../assets/img/theme/light/team-3-800x800.jpg" class="avatar  rounded-circle">
-                                        <span class="avatar-child avatar-badge bg-warning"></span>
-                                    </div>
-                                </div>
-                                <div class="flex-fill ml-3">
-                                    <h6 class="text-sm mb-0">Danielle Levin</h6>
-                                    <p class="text-sm mb-0">
-                                        Working remotely
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="">
-                                <div>
-                                    <div class="avatar-parent-child">
-                                        <img alt="Image placeholder" src="../../assets/img/theme/light/team-4-800x800.jpg" class="avatar  rounded-circle">
-                                        <span class="avatar-child avatar-badge bg-warning"></span>
-                                    </div>
-                                </div>
-                                <div class="flex-fill ml-3">
-                                    <h6 class="text-sm mb-0">Jesse Stevens</h6>
-                                    <p class="text-sm mb-0">
-                                        Working remotely
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="">
-                                <div>
-                                    <div class="avatar-parent-child">
-                                        <img alt="Image placeholder" src="../../assets/img/theme/light/team-5-800x800.jpg" class="avatar  rounded-circle">
-                                        <span class="avatar-child avatar-badge bg-warning"></span>
-                                    </div>
-                                </div>
-                                <div class="flex-fill ml-3">
-                                    <h6 class="text-sm mb-0">John Snow</h6>
-                                    <p class="text-sm mb-0">
-                                        Working remotely
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="modal-footer py-3 mt-auto">
-                    <a href="#" class="btn btn-block btn-sm btn-neutral btn-icon rounded-pill">
-                        <span class="btn-inner--icon"><i class="fab fa-facebook-messenger"></i></span>
-                        <span class="btn-inner--text">Open Chat</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Application container -->
     <div class="container-fluid container-application">
         <!-- Sidenav -->
         <!-- Content -->
         <div class="main-content position-relative">
-            <!-- Main nav -->
-            <!-- Omnisearch -->
-            <div id="omnisearch" class="omnisearch">
-                <div class="container">
-                    <!-- Search form -->
-                    <form class="omnisearch-form">
-                        <div class="form-group">
-                            <div class="input-group input-group-merge input-group-flush">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="far fa-search"></i></span>
-                                </div>
-                                <input type="text" class="form-control" placeholder="Type and hit enter ...">
-                            </div>
-                        </div>
-                    </form>
-                    <div class="omnisearch-suggestions">
-                        <h6 class="heading">Search Suggestions</h6>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li>
-                                        <a class="list-link" href="#">
-                                            <i class="far fa-search"></i>
-                                            <span>macbook pro</span> in Laptops
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="list-link" href="#">
-                                            <i class="far fa-search"></i>
-                                            <span>iphone 8</span> in Smartphones
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="list-link" href="#">
-                                            <i class="far fa-search"></i>
-                                            <span>macbook pro</span> in Laptops
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="list-link" href="#">
-                                            <i class="far fa-search"></i>
-                                            <span>beats pro solo 3</span> in Headphones
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="list-link" href="#">
-                                            <i class="far fa-search"></i>
-                                            <span>smasung galaxy 10</span> in Phones
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Page content -->
             <div class="page-content">
                 <div class="min-vh-100 py-5 d-flex align-items-center">
                     <div class="w-100">
                         <div class="row justify-content-center">
-                            <div class="col-sm-8 col-lg-4">
+                            <div class="col-sm-10 col-lg-6">
                                 <div class="card shadow zindex-100 mb-0">
                                     <div class="card-body px-md-5 py-5">
-                                        <div class="mb-5">
+                                        <div class="mb-5 text-center">
                                             <h6 class="h3">Login</h6>
-                                            <p class="text-muted mb-0">Sign in to your account to continue.</p>
+                                            <p class="text-muted  mb-0">Welcome to Cereals And Produce Board Information Management System</p>
                                         </div>
                                         <span class="clearfix"></span>
-                                        <form role="form">
+                                        <form role="form" method="POST">
                                             <div class="form-group">
-                                                <label class="form-control-label">Email address</label>
+                                                <label class="form-control-label">National ID Number</label>
                                                 <div class="input-group input-group-merge">
                                                     <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="far fa-user"></i></span>
+                                                        <span class="input-group-text"><i class="far fa-user-card"></i></span>
                                                     </div>
-                                                    <input type="email" class="form-control" id="input-email" placeholder="name@example.com">
+                                                    <input type="text" name="user_idno" required class="form-control" id="input-email">
                                                 </div>
                                             </div>
                                             <div class="form-group mb-4">
@@ -442,31 +37,33 @@ require_once('../partials/head.php');
                                                         <label class="form-control-label">Password</label>
                                                     </div>
                                                     <div class="mb-2">
-                                                        <a href="#!" class="small text-muted text-underline--dashed border-primary">Lost password?</a>
+                                                        <a href="#!" class="small text-muted text-underline--dashed border-success">Lost Password?</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-merge">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i class="far fa-key"></i></span>
                                                     </div>
-                                                    <input type="password" class="form-control" id="input-password" placeholder="Password">
+                                                    <input type="password" required name="user_password" class="form-control" id="input-password">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">
-                                                            <a href="#" data-toggle="password-text" data-target="#input-password">
-                                                                <i class="far fa-eye"></i>
+                                                            <a href="#" data-toggle="password-text " data-target="#input-password">
+                                                                <i class="far fa-eye text-warning"></i>
                                                             </a>
                                                         </span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="mt-4"><button type="button" class="btn btn-sm btn-primary btn-icon rounded-pill">
-                                                    <span class="btn-inner--text">Sign in</span>
+                                            <div class="mt-4">
+                                                <button type="submit" name="login" class="btn btn-sm btn-success btn-icon rounded-pill">
+                                                    <span class="btn-inner--text">Sign In</span>
                                                     <span class="btn-inner--icon"><i class="far fa-long-arrow-alt-right"></i></span>
-                                                </button></div>
+                                                </button>
+                                            </div>
                                         </form>
                                     </div>
-                                    <div class="card-footer px-md-5"><small>Not registered?</small>
-                                        <a href="#" class="small font-weight-bold">Create account</a>
+                                    <div class="card-footer px-md-5"><small>Not A Member?</small>
+                                        <a href="user_sign_up" class="small font-weight-bold text-success">Create Account</a>
                                     </div>
                                 </div>
                             </div>
@@ -477,7 +74,7 @@ require_once('../partials/head.php');
             <!-- Footer -->
         </div>
     </div>
-    <?php require_once('../partials/scripts.php'); ?>
+    <?php require_once('partials/scripts.php'); ?>
 </body>
 
 
