@@ -1,6 +1,23 @@
 <?php
+session_start();
+require_once 'config/config.php';
+require_once 'config/codeGen.php';
+
 /* Handle Password Reset */
 if (isset($_POST['reset_password'])) {
+    $user_idno = $_POST['user_idno'];
+    /* Check If User Exists */
+    $sql = "SELECT * FROM  users WHERE user_idno = '$user_idno'";
+    $res = mysqli_query($mysqli, $sql);
+    if (mysqli_num_rows($res) > 0) {
+        /* Redirect User To Confirm Password */
+        $_SESSION['success'] = 'Your Member Account Has Been Created, Proceed To Login';
+        $_SESSION['user_idno'] = $user_idno;
+        header('Location: user_confirm_password');
+        exit;
+    } else {
+        $err = "Nationa ID Number Does Not Exist";
+    }
 }
 /* Load Header Partial */
 require_once('partials/head.php');
@@ -16,7 +33,7 @@ require_once('partials/head.php');
                 <div class="min-vh-100 py-5 d-flex align-items-center">
                     <div class="w-100">
                         <div class="row justify-content-center">
-                            <div class="col-sm-8 col-lg-4">
+                            <div class="col-sm-8 col-lg-5">
                                 <div class="card shadow zindex-100 mb-0">
                                     <div class="card-body px-md-5 py-5">
                                         <div class="mb-5 text-center">
