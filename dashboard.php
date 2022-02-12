@@ -5,6 +5,8 @@ require_once('config/config.php');
 check_login();
 /* Load Header Partial */
 require_once('partials/head.php');
+/* Load Analytics */
+require_once('partials/analytics.php');
 ?>
 
 <body class="application application-offset">
@@ -447,6 +449,7 @@ require_once('partials/head.php');
                             </div>
                         </div>
                     </div>
+
                     <div class="col-xl-4 col-md-6">
                         <div class="card card-stats">
                             <!-- Card body -->
@@ -463,22 +466,7 @@ require_once('partials/head.php');
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-md-6">
-                        <div class="card card-stats">
-                            <!-- Card body -->
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                        <h6 class="text-muted mb-1">Total Payments</h6>
-                                        <span class="h3 font-weight-bold mb-0 ">7.500</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="far fa-hand-holding-usd text-warning fa-4x"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="col-xl-4 col-md-6">
                         <div class="card card-stats">
                             <!-- Card body -->
@@ -490,6 +478,22 @@ require_once('partials/head.php');
                                     </div>
                                     <div class="col-auto">
                                         <i class="far fa-ban text-warning fa-4x"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="card card-stats">
+                            <!-- Card body -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6 class="text-muted mb-1">Total Payments</h6>
+                                        <span class="h3 font-weight-bold mb-0 ">7.500</span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="far fa-hand-holding-usd text-warning fa-4x"></i>
                                     </div>
                                 </div>
                             </div>
