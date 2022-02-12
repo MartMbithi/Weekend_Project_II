@@ -1,10 +1,9 @@
 <div class="sidenav" id="sidenav-main">
     <!-- Sidenav header -->
     <div class="sidenav-header d-flex align-items-center">
-        <a class="navbar-brand text-light" href="dashboard">
-            <img src="assets/img/brand/main_logo.png" class="navbar-brand-img" alt="...">
-            CPB MIS
-        </a>
+        <h3 class="navbar-brand text-light" href="dashboard">
+            Cereal & Production Board MIS
+        </h3>
         <div class="ml-auto">
             <!-- Sidenav toggler -->
             <div class="sidenav-toggler sidenav-toggler-dark d-md-none" data-action="sidenav-unpin" data-target="#sidenav-main">
@@ -21,15 +20,11 @@
         <!-- Avatar -->
         <div>
             <a href="#" class="avatar rounded-circle avatar-xl">
-                <img alt="Image placeholder" src="../assets/img/theme/light/team-1-800x800.jpg" class="">
+                <img alt="Image placeholder" src="assets/img/users/no-profile.png" class="">
             </a>
             <div class="mt-4">
-                <h5 class="mb-0 text-white">Heather Parker</h5>
-                <span class="d-block text-sm text-white opacity-8 mb-3">Web Architect</span>
-                <a href="#" class="btn btn-sm btn-white btn-icon rounded-pill shadow hover-translate-y-n3">
-                    <span class="btn-inner--icon"><i class="far fa-coins"></i></span>
-                    <span class="btn-inner--text">$2.300</span>
-                </a>
+                <h5 class="mb-0 text-white"><?php echo $_SESSION['user_name']; ?></h5>
+                <span class="d-block text-sm text-white opacity-8 mb-3"><?php echo $_SESSION['user_number']; ?></span>
             </div>
         </div>
         <!-- User info -->

@@ -7,15 +7,17 @@ require_once 'config/codeGen.php';
 if (isset($_POST['login'])) {
     $user_idno = $_POST['user_idno'];
     $user_password = sha1(md5($_POST['user_password']));
-    $stmt = $mysqli->prepare("SELECT user_password, user_idno, user_access_level, user_id FROM users WHERE user_idno=? AND user_password=?");
+    $stmt = $mysqli->prepare("SELECT user_number, user_name, user_password, user_idno, user_access_level, user_id FROM users WHERE user_idno=? AND user_password=?");
     $stmt->bind_param('ss', $user_idno, $user_password);
     $stmt->execute();
-    $stmt->bind_result($user_password, $user_idno, $user_access_level, $user_id);
+    $stmt->bind_result($user_number, $user_name, $user_password, $user_idno, $user_access_level, $user_id);
     $rs = $stmt->fetch();
 
     /* Session Variables */
     $_SESSION['user_id'] = $user_id;
     $_SESSION['user_access_level'] = $user_access_level;
+    $_SESSION['user_name'] = $user_name;
+    $_SESSION['user_number'] = $user_number;
 
     if ($rs && $user_access_level == "admin") {
         header("location:dashboard");
