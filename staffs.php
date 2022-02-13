@@ -164,7 +164,10 @@ require_once('partials/head.php');
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="">Access Rights</label>
-                                                <input type="text" required name="user_phoneno" class="form-control" id="exampleInputEmail1">
+                                                <select name="user_access_level" style="width: 100%;" required class="basic form-control">
+                                                    <option>Staff</option>
+                                                    <option>admin</option>
+                                                </select>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="">Phone Number</label>
@@ -261,7 +264,11 @@ require_once('partials/head.php');
                                                                     </div>
                                                                     <div class="form-group col-md-4">
                                                                         <label for="">Acess Rights</label>
-
+                                                                        <select name="user_access_level" style="width: 100%;" required class="basic form-control">
+                                                                            <option><?php echo $users->user_access_level; ?></option>
+                                                                            <option>Staff</option>
+                                                                            <option>admin</option>
+                                                                        </select>
                                                                     </div>
                                                                     <div class="form-group col-md-6">
                                                                         <label for="">Email Address</label>
