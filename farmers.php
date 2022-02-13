@@ -235,20 +235,17 @@ require_once('partials/head.php');
                                         <tr>
                                             <td><?php echo $users->user_number; ?></td>
                                             <td>
-                                                <?php echo $users->user_name;
-                                                /* Green Badge If Verified */
-                                                if ($users->user_acc_status == 'Verified') {
-                                                ?>
-                                                    <span class="badge badge-success"><i class="fas fa-check"></i> Verified</span>
-                                                <?php } else { ?>
-                                                    <span class="badge badge-danger"><i class="fas fa-exclamation"></i> Pending</span>
-                                                <?php } ?>
+                                                <?php echo $users->user_name; ?>
                                             </td>
                                             <td><?php echo $users->user_idno; ?></td>
                                             <td><?php echo $users->user_email; ?></td>
                                             <td><?php echo $users->user_phoneno; ?></td>
                                             <td><?php echo $users->user_address; ?></td>
                                             <td>
+                                                <?php
+                                                if ($users->user_acc_status != 'Verified') { ?>
+                                                    <a data-toggle="modal" href="#verify_<?php echo $users->user_id; ?>" class="badge badge-success"><i class="fas fa-user-check"></i> Verify</a>
+                                                <?php } ?>
                                                 <a data-toggle="modal" href="#update_<?php echo $users->user_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
                                                 <a data-toggle="modal" href="#delete_<?php echo $users->user_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
                                             </td>
@@ -317,6 +314,31 @@ require_once('partials/head.php');
                                                                 <input type="hidden" name="user_id" value="<?php echo $users->user_id; ?>">
                                                                 <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
                                                                 <input type="submit" name="delete_farmer" value="Delete" class="text-center btn btn-danger">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Modal -->
+
+                                            <!-- Delete Modal -->
+                                            <div class="modal fade" id="verify_<?php echo $users->user_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">CONFIRM VERIFICATION</h5>
+                                                            <button type="button" class="close" data-dismiss="modal">
+                                                                <span>&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form method="POST">
+                                                            <div class="modal-body text-center text-danger">
+                                                                <h4>Verify <?php echo $users->user_name; ?> Farmer Account </h4>
+                                                                <br>
+                                                                <!-- Hide This -->
+                                                                <input type="hidden" name="user_id" value="<?php echo $users->user_id; ?>">
+                                                                <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
+                                                                <input type="submit" name="verify" value="Verify" class="text-center btn btn-danger">
                                                             </div>
                                                         </form>
                                                     </div>
