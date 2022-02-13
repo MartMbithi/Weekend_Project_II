@@ -77,6 +77,34 @@ if (isset($_POST['delete_product'])) {
     }
 }
 
+/* Add Order  */
+if (isset($_POST['add_order'])) {
+    $order_code = $_POST['order_code'];
+    $order_product_id = $_POST['order_product_id'];
+    $order_qty = $_POST['order_qty'];
+    $order_delivery_time = $_POST['order_delivery_time'];
+    $order_created_at  = date('d M Y');
+
+    /* Persist */
+    $sql = "INSERT INTO orders (order_code, order_product_id, order_qty, order_delivery_time, order_created_at)
+    VALUES(?,?,?,?,?)";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'sssss',
+        $order_code,
+        $order_product_id,
+        $order_qty,
+        $order_delivery_time,
+        $order_created_at
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Order Placed, Farmer Will Be Notified To Deliver In Time";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
+
 /* Load Header Partial */
 require_once('partials/head.php');
 ?>
@@ -232,9 +260,48 @@ require_once('partials/head.php');
                                             <td><?php echo $products->product_quantity; ?> Kgs</td>
                                             <td><?php echo date('d M Y', strtotime($products->product_date_harvested)); ?> </td>
                                             <td>
+                                                <a data-toggle="modal" href="#order_<?php echo $products->product_id; ?>" class="badge badge-success"><i class="fas fa-check"></i> Place Order</a>
                                                 <a data-toggle="modal" href="#update_<?php echo $products->product_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
                                                 <a data-toggle="modal" href="#delete_<?php echo $products->product_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
                                             </td>
+                                            <!-- Place Order -->
+                                            <div class="modal fade fixed-right" id="order_<?php echo $products->product_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog  modal-xl" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header align-items-center">
+                                                            <div class="modal-title">
+                                                                <h6 class="mb-0">Order <?php echo $products->product_name; ?></h6>
+                                                            </div>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form method="post" enctype="multipart/form-data" role="form">
+                                                                <div class="row">
+                                                                    <div class="form-group col-md-4">
+                                                                        <label for="">Order Code</label>
+                                                                        <input type="text" readonly value="<?php echo $a . $b; ?>" required name="order_code" class="form-control">
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label for="">Order Quantity (KGS)</label>
+                                                                        <input type="text" required name="order_qty" class="form-control" id="exampleInputEmail1">
+                                                                        <input type="hidden" required value="<?php echo $products->product_id; ?>" name="order_product_id" class="form-control" id="exampleInputEmail1">
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label for="">Estimated Delivery Date</label>
+                                                                        <input type="date" required name="order_delivery_time" class="form-control">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="text-right">
+                                                                    <button type="submit" name="add_order" class="btn btn-primary">Submit Order</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Order -->
                                             <!-- Update Modal -->
                                             <div class="modal fade fixed-right" id="update_<?php echo $products->product_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                                 <div class="modal-dialog  modal-xl" role="document">
