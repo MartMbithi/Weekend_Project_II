@@ -227,7 +227,28 @@ require_once('partials/head.php');
                                             <!-- End Modal -->
 
                                             <!-- Delete Modal -->
-
+                                            <div class="modal fade" id="delete_<?php echo $categories->category_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">CONFIRM DELETE</h5>
+                                                            <button type="button" class="close" data-dismiss="modal">
+                                                                <span>&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form method="POST">
+                                                            <div class="modal-body text-center text-danger">
+                                                                <h4>Delete : <?php echo $categories->category_name; ?> </h4>
+                                                                <br>
+                                                                <!-- Hide This -->
+                                                                <input type="hidden" name="category_id" value="<?php echo $categories->category_id; ?>">
+                                                                <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
+                                                                <input type="submit" name="delete_category" value="Delete" class="text-center btn btn-danger">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <!-- End Modal -->
                                         </tr>
                                     <?php
