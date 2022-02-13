@@ -93,9 +93,9 @@ if (isset($_POST['update_staff'])) {
 if (isset($_POST['delete_staff'])) {
     $user_id = $_POST['user_id'];
     /* sql */
-    $sql = "DELETE FROM users WHERE user_id = ?";
+    $sql = "DELETE FROM users WHERE user_id = '$user_id'";
     $prepare = $mysqli->prepare($sql);
-    $bind = $prepare->bind_param('s', $user_id);
+    $prepare->execute();
     if ($prepare) {
         $success = "Deleted";
     } else {

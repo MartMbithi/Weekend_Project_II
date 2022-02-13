@@ -95,6 +95,7 @@ if (isset($_POST['delete_farmer'])) {
     $sql = "DELETE FROM users WHERE user_id = ?";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param('s', $user_id);
+    $prepare->execute();
     if ($prepare) {
         $success = "Farmer Deleted";
     } else {
