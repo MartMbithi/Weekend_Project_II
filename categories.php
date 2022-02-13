@@ -50,6 +50,7 @@ if (isset($_POST['update_category'])) {
     }
 }
 
+
 /* Delete Category */
 if (isset($_POST['delete_category'])) {
     $category_id = $_POST['category_id'];
