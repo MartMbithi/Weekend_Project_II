@@ -33,8 +33,49 @@ if (isset($_POST['add_product'])) {
         $err = "Failed!, Please Try Again Later";
     }
 }
+
 /* Update Product*/
+if (isset($_POST['update_product'])) {
+    $product_id = $_POST['product_id'];
+    $product_category_id = $_POST['product_category_id'];
+    $product_name = $_POST['product_name'];
+    $product_date_harvested = $_POST['product_date_harvested'];
+    $product_quantity = $_POST['product_quantity'];
+
+    /* Persist */
+    $sql = "UPDATE products SET product_category_id = ?, product_name =?, product_date_harvested =?, product_quantity = ? WHERE product_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'sssss',
+        $product_category_id,
+        $product_name,
+        $product_date_harvested,
+        $product_quantity,
+        $product_id
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Product Updated";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
+
 /* Delete Product */
+if (isset($_POST['delete'])) {
+    $product_id = $_POST['product_id'];
+
+    /* Delete */
+    $sql = "DELETE FROM products WHERE product_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param('s', $product_id);
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Product Removed";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 
 /* Load Header Partial */
 require_once('partials/head.php');
