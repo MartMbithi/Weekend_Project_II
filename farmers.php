@@ -101,6 +101,27 @@ if (isset($_POST['delete_farmer'])) {
         $err = "Failed!, Please Try Again";
     }
 }
+
+/* Verify Account */
+if (isset($_POST['verify'])) {
+    $user_account_status = 'Verified';
+    $user_id = $_POST['user_id'];
+
+    /* Persist */
+    $sql = "UPDATE users SET user_account_status =? WHERE user_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'ss',
+        $user_account_status,
+        $user_id
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Farmer Account Verified";
+    } else {
+        $err = "Failed To Verify";
+    }
+}
 /* Load Header Partial */
 require_once('partials/head.php');
 ?>
