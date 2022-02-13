@@ -5,6 +5,34 @@ require_once('config/codeGen.php');
 require_once('config/config.php');
 check_login();
 /* Add Product */
+if (isset($_POST['add_product'])) {
+    $product_category_id = $_POST['product_category_id'];
+    $product_user_id = $_POST['product_user_id'];
+    $product_code = $_POST['product_code'];
+    $product_name = $_POST['product_name'];
+    $product_date_harvested = $_POST['product_date_harvested'];
+    $product_quantity = $_POST['product_quantity'];
+
+    /* Persist */
+    $sql = "INSERT INTO products(product_category_id, product_user_name, product_code, product_name, product_date_harvested, product_quantity)
+    VALUES(?,?,?,?,?,?)";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'ssssss',
+        $product_category_id,
+        $product_user_id,
+        $product_code,
+        $product_name,
+        $product_date_harvested,
+        $product_quantity
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Product Registered";
+    } else {
+        $err = "Failed!, Please Try Again Later";
+    }
+}
 /* Update Product*/
 /* Delete Product */
 
@@ -104,7 +132,7 @@ require_once('partials/head.php');
                                                 <label for="">Available Quantity In KGS</label>
                                                 <input type="number" required name="product_quantity" class="form-control">
                                             </div>
-                                            <div class="form-group col-md-12">
+                                            <!-- <div class="form-group col-md-12">
                                                 <label for="exampleInputFile">Product Image </label>
                                                 <div class="input-group">
                                                     <div class="custom-file">
@@ -112,7 +140,7 @@ require_once('partials/head.php');
                                                         <label class="custom-file-label" for="exampleInputFile">Choose File</label>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="text-right">
                                             <button type="submit" name="add_product" class="btn btn-primary">Register Product</button>
