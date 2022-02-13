@@ -26,7 +26,29 @@ if (isset($_POST['add_category'])) {
         $err = "Failed!, Please Try Again";
     }
 }
+
 /* Update Category */
+if (isset($_POST['update_category'])) {
+    $category_id = $_POST['category_id'];
+    $category_name = $_POST['category_name'];
+    $category_desc =  $_POST['category_desc'];
+
+    /* Persist */
+    $sql = "UPDATE product_categories SET category_name =?, category_desc =? WHERE category_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'sss',
+        $category_name,
+        $category_desc,
+        $category_id
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Product Category Details Updated";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 
 /* Delete Category */
 
