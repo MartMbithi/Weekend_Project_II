@@ -130,14 +130,14 @@ require_once('partials/head.php');
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="">Phone Number</label>
-                                                <input type="text" value="<?php echo $user->user_phoneno; ?>" required name="user_phone" class="form-control">
+                                                <input type="text" value="<?php echo $user->user_phoneno; ?>" required name="user_phoneno" class="form-control">
                                             </div>
 
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-md-12">
                                                 <label for="exampleInputPassword1">Address</label>
-                                                <textarea required name="user_adr" rows="2" class="form-control Summernote"><?php echo $user->user_address; ?></textarea>
+                                                <textarea required name="user_address" rows="2" class="form-control Summernote"><?php echo $user->user_address; ?></textarea>
                                             </div>
                                         </div>
                                         <div class="text-right">
@@ -159,7 +159,7 @@ require_once('partials/head.php');
                                             </div>
                                             <div class="form-group col-md-12">
                                                 <label for="">New Password</label>
-                                                <input type="password" readonly required name="new_password" class="form-control">
+                                                <input type="password"  required name="new_password" class="form-control">
                                             </div>
                                             <div class="form-group col-md-12">
                                                 <label for="">Confirm Password</label>
