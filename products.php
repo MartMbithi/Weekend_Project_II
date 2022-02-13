@@ -62,7 +62,7 @@ if (isset($_POST['update_product'])) {
 }
 
 /* Delete Product */
-if (isset($_POST['delete'])) {
+if (isset($_POST['delete_product'])) {
     $product_id = $_POST['product_id'];
 
     /* Delete */
@@ -199,7 +199,7 @@ require_once('partials/head.php');
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h6 class="mb-0">Registered Categories</h6>
+                            <h6 class="mb-0">Registered Products</h6>
                         </div>
                         <div class="card-body py-3 flex-grow-1">
                             <table class="table table-bordered text-truncate" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -207,69 +207,48 @@ require_once('partials/head.php');
                                     <tr>
                                         <th>Code</th>
                                         <th>Name</th>
-                                        <th>Details</th>
+                                        <th>Category</th>
+                                        <th>Farmer</th>
+                                        <th>Qty</th>
+                                        <th>Date Harvested</th>
                                         <th>Manage</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $ret = "SELECT * FROM product_categories";
+                                    $ret = "SELECT * FROM products p INNER JOIN 
+                                    product_categories pc ON p.product_category_id = pc.category_id
+                                    INNER JOIN users u ON u.user_id  = p.product_user_id";
                                     $stmt = $mysqli->prepare($ret);
                                     $stmt->execute(); //ok
                                     $res = $stmt->get_result();
-                                    while ($categories = $res->fetch_object()) {
+                                    while ($products = $res->fetch_object()) {
                                     ?>
                                         <tr>
-                                            <td><?php echo $categories->category_code; ?></td>
-                                            <td><?php echo $categories->category_name; ?></td>
+                                            <td><?php echo $products->product_code; ?></td>
+                                            <td><?php echo $products->product_name; ?></td>
+                                            <td><?php echo $products->category_code . ' - ' . $products->category_name; ?></td>
+                                            <td><?php echo $products->user_number . ' - ' . $products->user_name; ?></td>
+                                            <td><?php echo $products->product_quantity; ?> Kgs</td>
+                                            <td><?php echo date('d M Y', strtotime($products->product_date_harvested)); ?> </td>
                                             <td>
-                                                <?php
-                                                if (strlen($categories->category_desc) > 100) {
-                                                    echo substr($categories->category_desc, 0, 100) . '...';
-                                                } else {
-                                                    echo $categories->category_desc;
-                                                }
-                                                ?>
-                                            </td>
-                                            <td>
-                                                <a data-toggle="modal" href="#update_<?php echo $categories->category_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
-                                                <a data-toggle="modal" href="#delete_<?php echo $categories->category_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
+                                                <a data-toggle="modal" href="#update_<?php echo $products->product_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
+                                                <a data-toggle="modal" href="#delete_<?php echo $products->product_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
                                             </td>
                                             <!-- Update Modal -->
-                                            <div class="modal fade fixed-right" id="update_<?php echo $categories->category_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal fade fixed-right" id="update_<?php echo $products->product_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                                 <div class="modal-dialog  modal-xl" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header align-items-center">
                                                             <div class="modal-title">
-                                                                <h6 class="mb-0">Update <?php echo $categories->category_name; ?></h6>
+                                                                <h6 class="mb-0">Update <?php echo $products->product_name; ?></h6>
                                                             </div>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form method="post" enctype="multipart/form-data" role="form">
-                                                                <div class="row">
-                                                                    <div class="form-group col-md-8">
-                                                                        <label for="">Name</label>
-                                                                        <input type="text" required name="category_name" value="<?php echo $categories->category_name; ?>" class="form-control" id="exampleInputEmail1">
-                                                                        <input type="hidden" required name="category_id" value="<?php echo $categories->category_id; ?>" class="form-control" id="exampleInputEmail1">
-                                                                    </div>
-                                                                    <div class="form-group col-md-4">
-                                                                        <label for="">Code</label>
-                                                                        <input type="text" readonly value="<?php echo $categories->category_code; ?>" required name="category_code" class="form-control">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="form-group col-md-12">
-                                                                        <label for="exampleInputPassword1">Description</label>
-                                                                        <textarea required name="category_desc" rows="2" class="form-control"><?php echo $categories->category_desc; ?></textarea>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="text-right">
-                                                                    <button type="submit" name="update_category" class="btn btn-primary">Update Category</button>
-                                                                </div>
-                                                            </form>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -277,7 +256,7 @@ require_once('partials/head.php');
                                             <!-- End Modal -->
 
                                             <!-- Delete Modal -->
-                                            <div class="modal fade" id="delete_<?php echo $categories->category_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="delete_<?php echo $products->product_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -288,12 +267,12 @@ require_once('partials/head.php');
                                                         </div>
                                                         <form method="POST">
                                                             <div class="modal-body text-center text-danger">
-                                                                <h4>Delete : <?php echo $categories->category_name; ?> </h4>
+                                                                <h4>Delete <?php echo $products->product_name; ?> </h4>
                                                                 <br>
                                                                 <!-- Hide This -->
-                                                                <input type="hidden" name="category_id" value="<?php echo $categories->category_id; ?>">
+                                                                <input type="hidden" name="product_name" value="<?php echo $products->product_name; ?>">
                                                                 <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
-                                                                <input type="submit" name="delete_category" value="Delete" class="text-center btn btn-danger">
+                                                                <input type="submit" name="delete_product" value="Delete" class="text-center btn btn-danger">
                                                             </div>
                                                         </form>
                                                     </div>
