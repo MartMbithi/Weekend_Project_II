@@ -1,3 +1,5 @@
+<!-- Jquerry -->
+<script src="assets/js/jquery.min.js"></script>
 <!-- Core JS - includes jquery, bootstrap, popper, in-view and sticky-kit -->
 <script src="assets/js/purpose.core.js"></script>
 <!-- Purpose JS -->

@@ -10,113 +10,20 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link nav-link-icon sidenav-toggler" data-action="sidenav-pin" data-target="#sidenav-main"><i class="far fa-bars"></i></a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link nav-link-icon" data-action="omnisearch-open" data-target="#omnisearch"><i class="far fa-search"></i></a>
-                </li>
-                <li class="nav-item dropdown dropdown-animate">
-                    <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-bell"></i></a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg dropdown-menu-arrow p-0">
-                        <div class="py-3 px-3">
-                            <h5 class="heading h6 mb-0">Notifications</h5>
-                        </div>
-                        <div class="list-group list-group-flush">
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="2 hrs ago">
-                                    <div>
-                                        <span class="avatar bg-primary text-white rounded-circle">AM</span>
-                                    </div>
-                                    <div class="flex-fill ml-3">
-                                        <div class="h6 text-sm mb-0">Alex Michael <small class="float-right text-muted">2 hrs ago</small></div>
-                                        <p class="text-sm lh-140 mb-0">
-                                            Some quick example text to build on the card title.
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="3 hrs ago">
-                                    <div>
-                                        <span class="avatar bg-warning text-white rounded-circle">SW</span>
-                                    </div>
-                                    <div class="flex-fill ml-3">
-                                        <div class="h6 text-sm mb-0">Sandra Wayne <small class="float-right text-muted">3 hrs ago</small></div>
-                                        <p class="text-sm lh-140 mb-0">
-                                            Some quick example text to build on the card title.
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="5 hrs ago">
-                                    <div>
-                                        <span class="avatar bg-info text-white rounded-circle">JM</span>
-                                    </div>
-                                    <div class="flex-fill ml-3">
-                                        <div class="h6 text-sm mb-0">Jason Miller <small class="float-right text-muted">5 hrs ago</small></div>
-                                        <p class="text-sm lh-140 mb-0">
-                                            Some quick example text to build on the card title.
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="2 hrs ago">
-                                    <div>
-                                        <span class="avatar bg-dark text-white rounded-circle">MJ</span>
-                                    </div>
-                                    <div class="flex-fill ml-3">
-                                        <div class="h6 text-sm mb-0">Mike Thomson <small class="float-right text-muted">2 hrs ago</small></div>
-                                        <p class="text-sm lh-140 mb-0">
-                                            Some quick example text to build on the card title.
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="d-flex align-items-center" data-toggle="tooltip" data-placement="right" data-title="3 hrs ago">
-                                    <div>
-                                        <span class="avatar bg-primary text-white rounded-circle">RN</span>
-                                    </div>
-                                    <div class="flex-fill ml-3">
-                                        <div class="h6 text-sm mb-0">Richard Nixon <small class="float-right text-muted">3 hrs ago</small></div>
-                                        <p class="text-sm lh-140 mb-0">
-                                            Some quick example text to build on the card title.
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="py-3 text-center">
-                            <a href="#" class="link link-sm link--style-3">View all notifications</a>
-                        </div>
-                    </div>
-                </li>
+
                 <li class="nav-item dropdown dropdown-animate">
                     <a class="nav-link pr-lg-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="avatar avatar-sm rounded-circle">
-                            <img alt="Image placeholder" src="../assets/img/theme/light/team-4-800x800.jpg">
+                            <img alt="Image placeholder" src="assets/img/users/no-profile.png">
                         </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow">
-                        <h6 class="dropdown-header px-0">Hi, Heather!</h6>
-                        <a href="user/profile.html" class="dropdown-item">
+                        <h6 class="dropdown-header px-0">Hi, <?php echo $_SESSION['user_name']; ?></h6>
+                        <a href="profile" class="dropdown-item">
                             <i class="far fa-user"></i>
                             <span>My profile</span>
                         </a>
-                        <a href="account/settings.html" class="dropdown-item">
-                            <i class="far fa-cog"></i>
-                            <span>Settings</span>
-                        </a>
-                        <a href="account/billing.html" class="dropdown-item">
-                            <i class="far fa-credit-card"></i>
-                            <span>Billing</span>
-                        </a>
-                        <a href="shop/orders.html" class="dropdown-item">
-                            <i class="far fa-shopping-basket"></i>
-                            <span>Orders</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="authentication/login.html" class="dropdown-item">
+                        <a href="logout" class="dropdown-item">
                             <i class="far fa-sign-out-alt"></i>
                             <span>Logout</span>
                         </a>
