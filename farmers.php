@@ -108,7 +108,7 @@ if (isset($_POST['verify'])) {
     $user_id = $_POST['user_id'];
 
     /* Persist */
-    $sql = "UPDATE users SET user_account_status =? WHERE user_id =?";
+    $sql = "UPDATE users SET user_acc_status =? WHERE user_id =?";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
         'ss',
