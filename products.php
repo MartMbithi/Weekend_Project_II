@@ -14,7 +14,7 @@ if (isset($_POST['add_product'])) {
     $product_quantity = $_POST['product_quantity'];
 
     /* Persist */
-    $sql = "INSERT INTO products(product_category_id, product_user_name, product_code, product_name, product_date_harvested, product_quantity)
+    $sql = "INSERT INTO products(product_category_id, product_user_id, product_code, product_name, product_date_harvested, product_quantity)
     VALUES(?,?,?,?,?,?)";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
