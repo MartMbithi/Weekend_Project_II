@@ -12,7 +12,7 @@ if (isset($_POST['add_category'])) {
 
     /* Persist */
     $sql = "INSERT INTO product_categories (category_code, category_name, category_desc) VALUES(?,?,?)";
-    $prepare = $mysql->prepare($sql);
+    $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
         'sss',
         $category_code,
@@ -120,7 +120,7 @@ require_once('partials/head.php');
                                         <div class="row">
                                             <div class="form-group col-md-8">
                                                 <label for="">Name</label>
-                                                <input type="text" required name="caategory_name" class="form-control" id="exampleInputEmail1">
+                                                <input type="text" required name="category_name" class="form-control" id="exampleInputEmail1">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="">Code</label>
@@ -152,41 +152,38 @@ require_once('partials/head.php');
                             <h6 class="mb-0">Registered Categories</h6>
                         </div>
                         <div class="card-body py-3 flex-grow-1">
-                            <table class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <table class="table table-bordered text-truncate" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
-                                        <th>Number</th>
-                                        <th>Names</th>
-                                        <th>ID No</th>
-                                        <th>Email</th>
-                                        <th>Phone No</th>
-                                        <th>Address</th>
+                                        <th>Code</th>
+                                        <th>Name</th>
+                                        <th>Details</th>
+                                        <th>Manage</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $ret = "SELECT * FROM users WHERE user_access_level ='Farmer'";
+                                    $ret = "SELECT * FROM product_categories";
                                     $stmt = $mysqli->prepare($ret);
                                     $stmt->execute(); //ok
                                     $res = $stmt->get_result();
-                                    while ($users = $res->fetch_object()) {
+                                    while ($categories = $res->fetch_object()) {
                                     ?>
                                         <tr>
-                                            <td><?php echo $users->user_number; ?></td>
+                                            <td><?php echo $categories->category_code; ?></td>
+                                            <td><?php echo $categories->category_name; ?></td>
                                             <td>
-                                                <?php echo $users->user_name;
-                                                /* Green Badge If Verified */
-                                                if ($users->user_acc_status == 'Verified') {
+                                                <?php
+                                                if (strlen($categories->category_desc) > 100) {
+                                                    echo substr($categories->category_desc, 0, 100) . '...';
+                                                } else {
+                                                    echo $categories->category_desc;
+                                                }
                                                 ?>
-                                                    <span class="badge badge-success"><i class="fas fa-check"></i> Verified</span>
-                                                <?php } else { ?>
-                                                    <span class="badge badge-danger"><i class="fas fa-exclamation"></i> Pending</span>
-                                                <?php } ?>
                                             </td>
-                                            <td><?php echo $users->user_idno; ?></td>
-                                            <td><?php echo $users->user_email; ?></td>
-                                            <td><?php echo $users->user_phoneno; ?></td>
-                                            <td><?php echo $users->user_address; ?></td>
+                                            <td>
+
+                                            </td>
                                         </tr>
                                     <?php
                                     }
