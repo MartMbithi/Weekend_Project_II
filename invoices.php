@@ -196,115 +196,117 @@ require_once('partials/head.php');
                             <h6 class="mb-0">Registered Orders - Invoices</h6>
                         </div>
                         <div class="card-body py-3 flex-grow-1">
-                            <thead>
-                                <tr>
-                                    <th>Product Details</th>
-                                    <th>Farmer Details</th>
-                                    <th>Order Details</th>
-                                    <th>Manage</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $ret = "SELECT * FROM orders o
-                                INNER JOIN products p ON p.product_id = o.order_product_id
-                                INNER JOIN product_categories c ON c.category_id = p.product_category_id
-                                INNER JOIN users u ON u.user_id = p.product_user_id
-                                ORDER BY o.order_created_at  ASC ";
-                                $stmt = $mysqli->prepare($ret);
-                                $stmt->execute(); //ok
-                                $res = $stmt->get_result();
-                                while ($orders = $res->fetch_object()) {
-                                ?>
+                            <table class="table table-bordered text-truncate" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
                                     <tr>
-                                        <td>
-                                            <b># :</b> <?php echo $orders->product_code; ?><br>
-                                            <b>Name :</b> <?php echo $orders->product_name; ?><br>
-                                            <b>Category: </b> <?php echo $orders->category_name; ?>
-                                        </td>
-                                        <td>
-                                            <b># :</b> <?php echo $orders->user_number; ?><br>
-                                            <b>Name :</b> <?php echo $orders->user_name; ?><br>
-                                            <b>ID No: </b> <?php echo $orders->user_idno; ?>
-                                        </td>
-                                        <td>
-                                            <b># :</b> <?php echo $orders->order_code; ?><br>
-                                            <b>QTY :</b> <?php echo $orders->order_qty; ?> Kgs<br>
-                                            <b>Status : </b> <?php echo $orders->order_status; ?><br>
-                                            <b>Delivery Date: </b> <?php echo date('d M Y', strtotime($orders->order_delivery_time)); ?>
-                                        </td>
-                                        <td>
-                                            <a data-toggle="modal" href="#pay_<?php echo $orders->order_id; ?>" class="badge badge-success"><i class="fas fa-check"></i> Pay Order</a>
-                                            <a data-toggle="modal" href="#update_<?php echo $orders->order_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
-                                            <a data-toggle="modal" href="#delete_<?php echo $orders->order_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
-                                        </td>
-                                        <!-- Pay Order -->
-                                        <div class="modal fade fixed-right" id="order_<?php echo $orders->order_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                                            <div class="modal-dialog  modal-xl" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header align-items-center">
-                                                        <div class="modal-title">
-                                                            <h6 class="mb-0">Pay Order Invoice # <?php echo $orders->order_code; ?></h6>
-                                                        </div>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Order -->
-                                        <!-- Update Modal -->
-                                        <div class="modal fade fixed-right" id="update_<?php echo $orders->order_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                                            <div class="modal-dialog  modal-xl" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header align-items-center">
-                                                        <div class="modal-title">
-                                                            <h6 class="mb-0">Update <?php echo $orders->order_code; ?></h6>
-                                                        </div>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Modal -->
-
-                                        <!-- Delete Modal -->
-                                        <div class="modal fade" id="delete_<?php echo $orders->order_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">CONFIRM DELETE</h5>
-                                                        <button type="button" class="close" data-dismiss="modal">
-                                                            <span>&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <form method="POST">
-                                                        <div class="modal-body text-center text-danger">
-                                                            <h4>Delete <?php echo $order->order_code; ?> </h4>
-                                                            <br>
-                                                            <!-- Hide This -->
-                                                            <input type="hidden" name="order_id" value="<?php echo $orders->order_id; ?>">
-                                                            <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
-                                                            <input type="submit" name="delete_order" value="Delete" class="text-center btn btn-danger">
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <th>Product Details</th>
+                                        <th>Farmer Details</th>
+                                        <th>Order Details</th>
+                                        <th>Manage</th>
                                     </tr>
-                                <?php
-                                }
-                                ?>
-                            </tbody>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $ret = "SELECT * FROM orders o
+                                    INNER JOIN products p ON p.product_id = o.order_product_id
+                                    INNER JOIN product_categories c ON c.category_id = p.product_category_id
+                                    INNER JOIN users u ON u.user_id = p.product_user_id
+                                    ORDER BY o.order_created_at  ASC ";
+                                    $stmt = $mysqli->prepare($ret);
+                                    $stmt->execute(); //ok
+                                    $res = $stmt->get_result();
+                                    while ($orders = $res->fetch_object()) {
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <b># :</b> <?php echo $orders->product_code; ?><br>
+                                                <b>Name :</b> <?php echo $orders->product_name; ?><br>
+                                                <b>Category: </b> <?php echo $orders->category_name; ?>
+                                            </td>
+                                            <td>
+                                                <b># :</b> <?php echo $orders->user_number; ?><br>
+                                                <b>Name :</b> <?php echo $orders->user_name; ?><br>
+                                                <b>ID No: </b> <?php echo $orders->user_idno; ?>
+                                            </td>
+                                            <td>
+                                                <b># :</b> <?php echo $orders->order_code; ?><br>
+                                                <b>QTY :</b> <?php echo $orders->order_qty; ?> Kgs<br>
+                                                <b>Status : </b> <?php echo $orders->order_status; ?><br>
+                                                <b>Delivery Date: </b> <?php echo date('d M Y', strtotime($orders->order_delivery_time)); ?>
+                                            </td>
+                                            <td>
+                                                <a data-toggle="modal" href="#pay_<?php echo $orders->order_id; ?>" class="badge badge-success"><i class="fas fa-check"></i> Pay Order</a>
+                                                <a data-toggle="modal" href="#update_<?php echo $orders->order_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
+                                                <a data-toggle="modal" href="#delete_<?php echo $orders->order_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
+                                            </td>
+                                            <!-- Pay Order -->
+                                            <div class="modal fade fixed-right" id="order_<?php echo $orders->order_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog  modal-xl" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header align-items-center">
+                                                            <div class="modal-title">
+                                                                <h6 class="mb-0">Pay Order Invoice # <?php echo $orders->order_code; ?></h6>
+                                                            </div>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Order -->
+                                            <!-- Update Modal -->
+                                            <div class="modal fade fixed-right" id="update_<?php echo $orders->order_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog  modal-xl" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header align-items-center">
+                                                            <div class="modal-title">
+                                                                <h6 class="mb-0">Update <?php echo $orders->order_code; ?></h6>
+                                                            </div>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Modal -->
+
+                                            <!-- Delete Modal -->
+                                            <div class="modal fade" id="delete_<?php echo $orders->order_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">CONFIRM DELETE</h5>
+                                                            <button type="button" class="close" data-dismiss="modal">
+                                                                <span>&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form method="POST">
+                                                            <div class="modal-body text-center text-danger">
+                                                                <h4>Delete <?php echo $orders->order_code; ?> </h4>
+                                                                <br>
+                                                                <!-- Hide This -->
+                                                                <input type="hidden" name="order_id" value="<?php echo $orders->order_id; ?>">
+                                                                <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
+                                                                <input type="submit" name="delete_order" value="Delete" class="text-center btn btn-danger">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
