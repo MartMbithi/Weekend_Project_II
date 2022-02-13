@@ -146,7 +146,7 @@ require_once('partials/head.php');
                         <div class="col-md-6 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0">
                             <!-- Page title + Go Back button -->
                             <div class="d-inline-block">
-                                <h5 class="h3 font-weight-400 mb-0 text-white">Products - Cereals</h5>
+                                <h5 class="h3 font-weight-400 mb-0 text-white">Users - Farmers</h5>
                             </div>
                             <!-- Additional info -->
                         </div>
@@ -154,7 +154,7 @@ require_once('partials/head.php');
                         </div>
                     </div>
                     <div class="text-right">
-                        <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-warning"> Register New Product</button>
+                        <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-warning"> Register New Farmer</button>
                     </div>
                     <br>
                     <!-- Add Modal -->
@@ -163,7 +163,7 @@ require_once('partials/head.php');
                             <div class="modal-content">
                                 <div class="modal-header align-items-center">
                                     <div class="modal-title">
-                                        <h6 class="mb-0">Register New Product</h6>
+                                        <h6 class="mb-0">Register New Farmer</h6>
                                     </div>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
@@ -172,64 +172,29 @@ require_once('partials/head.php');
                                 <div class="modal-body">
                                     <form method="post" enctype="multipart/form-data" role="form">
                                         <div class="row">
-                                            <div class="form-group col-md-8">
-                                                <label for="">Name</label>
-                                                <input type="text" required name="product_name" class="form-control" id="exampleInputEmail1">
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <label for="">Code</label>
-                                                <input type="text" readonly value="<?php echo $a; ?>" required name="product_code" class="form-control">
+                                            <div class="form-group col-md-12">
+                                                <label for="">Full Name</label>
+                                                <input type="text" required name="user_name" class="form-control" id="exampleInputEmail1">
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label for="">Category Name</label>
-                                                <select name="product_category_id" style="width: 100%;" required class="basic form-control">
-                                                    <?php
-                                                    $ret = "SELECT * FROM product_categories 
-                                                    ORDER BY category_name ASC";
-                                                    $stmt = $mysqli->prepare($ret);
-                                                    $stmt->execute(); //ok
-                                                    $res = $stmt->get_result();
-                                                    while ($category = $res->fetch_object()) {
-                                                    ?>
-                                                        <option value="<?php echo $category->category_id; ?>"><?php echo $category->category_code . ' - ' . $category->category_name; ?></option>
-                                                    <?php } ?>
-                                                </select>
+                                                <label for="">National ID Number</label>
+                                                <input type="text" required name="user_idno" class="form-control" id="exampleInputEmail1">
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label for="">Farmer Name</label>
-                                                <select name="product_user_id" style="width: 100%;" required class="basic form-control">
-                                                    <?php
-                                                    $ret = "SELECT * FROM users WHERE user_access_level = 'Farmer'
-                                                    ORDER BY user_name ASC";
-                                                    $stmt = $mysqli->prepare($ret);
-                                                    $stmt->execute(); //ok
-                                                    $res = $stmt->get_result();
-                                                    while ($farmer = $res->fetch_object()) {
-                                                    ?>
-                                                        <option value="<?php echo $farmer->user_id; ?>"><?php echo $farmer->user_number . ' - ' . $farmer->user_name; ?></option>
-                                                    <?php } ?>
-                                                </select>
+                                                <label for="">Phone Number</label>
+                                                <input type="text" required name="user_phoneno" class="form-control" id="exampleInputEmail1">
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label for="">Estimated Date Harvested</label>
-                                                <input type="date" required name="product_date_harvested" class="form-control">
+                                                <label for="">Email Address</label>
+                                                <input type="text" name="user_email" class="form-control" id="exampleInputEmail1">
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label for="">Available Quantity In KGS</label>
-                                                <input type="number" required name="product_quantity" class="form-control">
+                                                <label for="">Address</label>
+                                                <input type="text" name="user_address" class="form-control" id="exampleInputEmail1">
                                             </div>
-                                            <!-- <div class="form-group col-md-12">
-                                                <label for="exampleInputFile">Product Image </label>
-                                                <div class="input-group">
-                                                    <div class="custom-file">
-                                                        <input required name="product_image_1" accept=".png, .jpg, .jpeg" type="file" class="custom-file-input">
-                                                        <label class="custom-file-label" for="exampleInputFile">Choose File</label>
-                                                    </div>
-                                                </div>
-                                            </div> -->
                                         </div>
                                         <div class="text-right">
-                                            <button type="submit" name="add_product" class="btn btn-primary">Register Product</button>
+                                            <button type="submit" name="add_farmer" class="btn btn-primary">Register Farmer</button>
                                         </div>
                                     </form>
                                 </div>
