@@ -11,6 +11,7 @@ if (isset($_POST['add_farmer'])) {
     $user_idno  = $_POST['user_idno'];
     $user_email = $_POST['user_email'];
     $user_phoneno = $_POST['user_phoneno'];
+    $user_address = $_POST['user_address'];
     $user_access_level = 'Farmer';
     $user_account_status  = 'Verified';
     $user_password = sha1(md5('Farmer')); /* Default Password */
@@ -55,10 +56,51 @@ if (isset($_POST['add_farmer'])) {
             $err = "Failed!, Please Try Again";
         }
     }
-
-    /* Check If Details Match */
 }
 
+
+/* Update Farmer */
+if (isset($_POST['update_farmer'])) {
+    $user_id = $_POST['user_id'];
+    $user_name = $_POST['user_name'];
+    $user_idno = $_POST['user_idno'];
+    $user_email = $_POST['user_email'];
+    $user_address = $_POST['user_address'];
+    $user_phoneno = $_POST['user_phoneno'];
+
+    /* Update */
+    $sql = "UPDATE users SET user_name =?, user_idno =?, user_email =?, user_address =?, user_phoneno =? WHERE user_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'ssssss',
+        $user_name,
+        $user_idno,
+        $user_email,
+        $user_address,
+        $user_phoneno,
+        $user_id
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Farmer Account Updated";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
+
+/* Delete Account */
+if (isset($_POST['delete_farmer'])) {
+    $user_id = $_POST['user_id'];
+    /* sql */
+    $sql = "DELETE FROM users WHERE user_id = ?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param('s', $user_id);
+    if ($prepare) {
+        $success = "Farmer Deleted";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 /* Load Header Partial */
 require_once('partials/head.php');
 ?>
