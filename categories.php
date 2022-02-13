@@ -182,7 +182,8 @@ require_once('partials/head.php');
                                                 ?>
                                             </td>
                                             <td>
-
+                                                <a data-toggle="modal" href="#update_<?php echo $categories->category_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
+                                                <a data-toggle="modal" href="#delete_<?php echo $categories->category_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
                                             </td>
                                         </tr>
                                     <?php
