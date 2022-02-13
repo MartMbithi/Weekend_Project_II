@@ -248,7 +248,62 @@ require_once('partials/head.php');
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-
+                                                            <form method="post" enctype="multipart/form-data" role="form">
+                                                                <div class="row">
+                                                                    <div class="form-group col-md-8">
+                                                                        <label for="">Name</label>
+                                                                        <input type="text" required value="<?php echo $products->product_name; ?>" name="product_name" class="form-control" id="exampleInputEmail1">
+                                                                        <input type="hidden" required value="<?php echo $products->product_id; ?>" name="product_id" class="form-control" id="exampleInputEmail1">
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label for="">Code</label>
+                                                                        <input type="text" readonly value="<?php echo $products->product_code; ?>" required name="product_code" class="form-control">
+                                                                    </div>
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="">Category Name</label>
+                                                                        <select name="product_category_id" style="width: 100%;" required class="basic form-control">
+                                                                            <option value="<?php echo $products->category_id; ?>"><?php echo $products->category_code . ' - ' . $products->category_name; ?></option>
+                                                                            <?php
+                                                                            $cat_ret = "SELECT * FROM product_categories 
+                                                                            ORDER BY category_name ASC";
+                                                                            $cat_stmt = $mysqli->prepare($cat_ret);
+                                                                            $cat_stmt->execute(); //ok
+                                                                            $cat_res = $cat_stmt->get_result();
+                                                                            while ($category = $cat_res->fetch_object()) {
+                                                                            ?>
+                                                                                <option value="<?php echo $category->category_id; ?>"><?php echo $category->category_code . ' - ' . $category->category_name; ?></option>
+                                                                            <?php } ?>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="">Farmer Name</label>
+                                                                        <select name="product_user_id" style="width: 100%;" required class="basic form-control">
+                                                                            <option value="<?php echo $products->user_id; ?>"><?php echo $products->user_number . ' - ' . $products->user_name; ?></option>
+                                                                            <?php
+                                                                            $farmer_ret = "SELECT * FROM users WHERE user_access_level = 'Farmer'
+                                                                            ORDER BY user_name ASC";
+                                                                            $farmer_stmt = $mysqli->prepare($farmer_ret);
+                                                                            $farmer_stmt->execute(); //ok
+                                                                            $farmer_res = $farmer_stmt->get_result();
+                                                                            while ($farmer = $farmer_res->fetch_object()) {
+                                                                            ?>
+                                                                                <option value="<?php echo $farmer->user_id; ?>"><?php echo $farmer->user_number . ' - ' . $farmer->user_name; ?></option>
+                                                                            <?php } ?>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="">Estimated Date Harvested</label>
+                                                                        <input type="date" required name="product_date_harvested" value="<?php echo $products->product_date_harvested; ?>" class="form-control">
+                                                                    </div>
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="">Available Quantity In KGS</label>
+                                                                        <input type="number" required name="product_quantity" value="<?php echo $products->product_quantity; ?>" class="form-control">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="text-right">
+                                                                    <button type="submit" name="update_product" class="btn btn-primary">Register Product</button>
+                                                                </div>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
