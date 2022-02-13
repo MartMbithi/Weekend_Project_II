@@ -33,7 +33,7 @@ if (isset($_POST['update_profile'])) {
 }
 
 /* Change Password */
-if (isset($_POST['update_password'])) {
+if (isset($_POST['change_password'])) {
     $user_id = $_SESSION['user_id'];
     $old_password = sha1(md5($_POST['old_password']));
     $new_password = sha1(md5($_POST['new_password']));
