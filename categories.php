@@ -51,6 +51,22 @@ if (isset($_POST['update_category'])) {
 }
 
 /* Delete Category */
+if (isset($_POST['delete_category'])) {
+    $category_id = $_POST['category_id'];
+    /* Delete */
+    $sql = "DELETE FROM product_categories WHERE category_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind  = $prepare->bind_param(
+        's',
+        $category_id
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Removed Product Category";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 
 /* Load Header Partial */
 require_once('partials/head.php');
