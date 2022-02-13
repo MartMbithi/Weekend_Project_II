@@ -37,7 +37,7 @@ require_once('partials/head.php');
                             <div class="col-md-6 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0">
                                 <!-- Page title + Go Back button -->
                                 <div class="d-inline-block">
-                                    <h5 class="h3 font-weight-400 mb-0 text-white">Dashboard</h5>
+                                    <h5 class="h3 font-weight-400 mb-0 text-white"><?php echo $user->user_name; ?> Profile</h5>
                                 </div>
                                 <!-- Additional info -->
                             </div>
@@ -46,207 +46,74 @@ require_once('partials/head.php');
                         </div>
                     </div>
                     <!-- Stats -->
-                    <div class="row">
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card card-stats">
-                                <!-- Card body -->
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h6 class="text-muted mb-1">Farmers</h6>
-                                            <span class="h3 font-weight-bold mb-0 "><?php echo $farmers; ?></span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="far fa-users-cog text-warning fa-4x"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card card-stats">
-                                <!-- Card body -->
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h6 class="text-muted mb-1">Staffs</h6>
-                                            <span class="h3 font-weight-bold mb-0 "><?php echo $staffs; ?></span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="far fa-users text-warning fa-4x"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card card-stats">
-                                <!-- Card body -->
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h6 class="text-muted mb-1">Unpaid Invoices</h6>
-                                            <span class="h3 font-weight-bold mb-0 "><?php echo $unpaid_orders; ?></span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="far fa-exclamation text-warning fa-4x"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card card-stats">
-                                <!-- Card body -->
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h6 class="text-muted mb-1">Paid Invoices</h6>
-                                            <span class="h3 font-weight-bold mb-0 "><?php echo $paid_orders; ?></span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="far fa-file-check text-warning fa-4x"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="col-xl-6 col-md-6">
-                            <div class="card card-stats">
-                                <!-- Card body -->
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h6 class="text-muted mb-1">Total Orders</h6>
-                                            <span class="h3 font-weight-bold mb-0 "><?php echo $all_orders; ?></span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="far fa-calendar-check text-warning fa-4x"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-xl-6 col-md-6">
-                            <div class="card card-stats">
-                                <!-- Card body -->
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h6 class="text-muted mb-1">Total Payments</h6>
-                                            <span class="h3 font-weight-bold mb-0 ">Ksh <?php echo $total_payments; ?></span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="far fa-hand-holding-usd text-warning fa-4x"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h6 class="mb-0">Recent Orders</h6>
+                                    <h6 class="mb-0">Profile Settings</h6>
                                 </div>
                                 <div class="card-body py-3 flex-grow-1">
-                                    <table class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                        <thead>
-                                            <tr>
-                                                <th>Product Details</th>
-                                                <th>Farmer Details</th>
-                                                <th>Order Details</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            $ret = "SELECT * FROM orders o
-                                        INNER JOIN products p ON p.product_id = o.order_product_id
-                                        INNER JOIN product_categories c ON c.category_id = p.product_category_id
-                                        INNER JOIN users u ON u.user_id = p.product_user_id
-                                        ORDER BY o.order_created_at  ASC ";
-                                            $stmt = $mysqli->prepare($ret);
-                                            $stmt->execute(); //ok
-                                            $res = $stmt->get_result();
-                                            while ($orders = $res->fetch_object()) {
-                                            ?>
-                                                <tr>
-                                                    <td>
-                                                        <b># :</b> <?php echo $orders->product_code; ?><br>
-                                                        <b>Name :</b> <?php echo $order->product_name; ?><br>
-                                                        <b>Category: </b> <?php echo $order->category_name; ?>
-                                                    </td>
-                                                    <td>
-                                                        <b># :</b> <?php echo $orders->user_number; ?><br>
-                                                        <b>Name :</b> <?php echo $order->user_name; ?><br>
-                                                        <b>ID No: </b> <?php echo $order->user_idno; ?>
-                                                    </td>
-                                                    <td>
-                                                        <b># :</b> <?php echo $orders->order_code; ?><br>
-                                                        <b>QTY :</b> <?php echo $order->order_qty; ?> Kgs<br>
-                                                        <b>Status : </b> <?php echo $order->order_status; ?><br>
-                                                        <b>Delivery Date: </b> <?php echo date('d M Y', strtotime($order->order_delivery_time)); ?>
-                                                    </td>
-                                                </tr>
-                                            <?php
-                                            }
-                                            ?>
-                                        </tbody>
-                                    </table>
+                                    <form method="post" enctype="multipart/form-data" role="form">
+                                        <div class="row">
+                                            <div class="form-group col-md-8">
+                                                <label for="">Name</label>
+                                                <input type="text" required value="<?php echo $user->user_name; ?>" name="user_name" class="form-control" id="exampleInputEmail1">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="">User Number</label>
+                                                <input type="text" readonly value="<?php echo $user->user_number; ?>" required name="user_number" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="">National ID Number</label>
+                                                <input type="text" required value="<?php echo $user->user_idno; ?>" name="user_idno" class="form-control" id="exampleInputEmail1">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="">Email</label>
+                                                <input type="text" value="<?php echo $user->user_email; ?>" required name="user_email" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="">Phone Number</label>
+                                                <input type="text" value="<?php echo $user->user_phoneno; ?>" required name="user_phone" class="form-control">
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <label for="exampleInputPassword1">Address</label>
+                                                <textarea required name="user_adr" rows="2" class="form-control Summernote"><?php echo $user->user_address; ?></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="submit" name="update_profile" class="btn btn-primary">Update Profile</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h6 class="text-bold">Recent Registred Farmers</h6>
+                                    <h6 class="mb-0">Change Password</h6>
                                 </div>
                                 <div class="card-body py-3 flex-grow-1">
-                                    <table class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                        <thead>
-                                            <tr>
-                                                <th>Number</th>
-                                                <th>Names</th>
-                                                <th>ID No</th>
-                                                <th>Email</th>
-                                                <th>Phone No</th>
-                                                <th>Address</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            $ret = "SELECT * FROM users WHERE user_access_level ='Farmer'";
-                                            $stmt = $mysqli->prepare($ret);
-                                            $stmt->execute(); //ok
-                                            $res = $stmt->get_result();
-                                            while ($users = $res->fetch_object()) {
-                                            ?>
-                                                <tr>
-                                                    <td><?php echo $users->user_number; ?></td>
-                                                    <td>
-                                                        <?php echo $users->user_name;
-                                                        /* Green Badge If Verified */
-                                                        if ($users->user_acc_status == 'Verified') {
-                                                        ?>
-                                                            <span class="badge badge-success"><i class="fas fa-check"></i> Verified</span>
-                                                        <?php } else { ?>
-                                                            <span class="badge badge-danger"><i class="fas fa-exclamation"></i> Pending</span>
-                                                        <?php } ?>
-                                                    </td>
-                                                    <td><?php echo $users->user_idno; ?></td>
-                                                    <td><?php echo $users->user_email; ?></td>
-                                                    <td><?php echo $users->user_phoneno; ?></td>
-                                                    <td><?php echo $users->user_address; ?></td>
-                                                </tr>
-                                            <?php
-                                            }
-                                            ?>
-                                        </tbody>
-                                    </table>
+                                    <form method="post" enctype="multipart/form-data" role="form">
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <label for="">Old Password</label>
+                                                <input type="password" required name="old_password" class="form-control" id="exampleInputEmail1">
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label for="">New Password</label>
+                                                <input type="password" readonly required name="new_password" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label for="">Confirm Password</label>
+                                                <input type="password" required name="confirm_password" class="form-control" id="exampleInputEmail1">
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="submit" name="change_password" class="btn btn-primary">Change Password</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
