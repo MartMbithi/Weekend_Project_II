@@ -180,7 +180,7 @@ require_once('partials/analytics.php');
                                                 <td>
                                                     <b># :</b> <?php echo $orders->order_code; ?><br>
                                                     <b>QTY :</b> <?php echo $orders->order_qty; ?> Kgs<br>
-                                                    <b>Status : </b> <?php echo $orders->order_status; ?><br>
+                                                    <b>Status : </b> <?php echo $orders->order_payment_status; ?><br>
                                                     <b>Delivery Date: </b> <?php echo date('d M Y', strtotime($orders->order_delivery_time)); ?>
                                                 </td>
                                             </tr>

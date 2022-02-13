@@ -80,7 +80,7 @@ if (isset($_POST['add_payment'])) {
 
     /* Persist */
     $sql = "INSERT INTO payments (pay_order_id, pay_code, pay_amount, pay_desc)
-    VALUES(?,?,?,?,?)";
+    VALUES(?,?,?,?)";
     $order_sql = "UPDATE orders SET order_payment_status = 'Paid' WHERE order_id  = '$pay_order_id'";
 
     $prepare  = $mysqli->prepare($sql);
@@ -216,6 +216,9 @@ require_once('partials/head.php');
                                     $stmt->execute(); //ok
                                     $res = $stmt->get_result();
                                     while ($orders = $res->fetch_object()) {
+                                        /* Payment Amount */
+                                        /* 1KG = 30 Shillings */
+                                        $pay_amount = $orders->order_qty * 30;
                                     ?>
                                         <tr>
                                             <td>
@@ -231,11 +234,13 @@ require_once('partials/head.php');
                                             <td>
                                                 <b># :</b> <?php echo $orders->order_code; ?><br>
                                                 <b>QTY :</b> <?php echo $orders->order_qty; ?> Kgs<br>
-                                                <b>Status : </b> <?php echo $orders->order_status; ?><br>
+                                                <b>Status : </b> <?php echo $orders->order_payment_status; ?><br>
                                                 <b>Delivery Date: </b> <?php echo date('d M Y', strtotime($orders->order_delivery_time)); ?>
                                             </td>
                                             <td>
-                                                <a data-toggle="modal" href="#pay_<?php echo $orders->order_id; ?>" class="badge badge-success"><i class="fas fa-check"></i> Pay Order</a>
+                                                <?php if ($orders->order_payment_status != 'Paid') { ?>
+                                                    <a data-toggle="modal" href="#pay_<?php echo $orders->order_id; ?>" class="badge badge-success"><i class="fas fa-check"></i> Pay Order</a>
+                                                <?php } ?>
                                                 <a data-toggle="modal" href="#update_<?php echo $orders->order_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
                                                 <a data-toggle="modal" href="#delete_<?php echo $orders->order_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
                                             </td>
@@ -252,7 +257,22 @@ require_once('partials/head.php');
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-
+                                                            <form method="post" enctype="multipart/form-data" role="form">
+                                                                <div class="row">
+                                                                    <div class="form-group col-md-12">
+                                                                        <label for="">Payment Amount (Ksh)</label>
+                                                                        <input type="hidden" value="<?php echo $orders->order_id; ?>" required name="pay_order_id" class="form-control" id="exampleInputEmail1">
+                                                                        <input readonly type="text" value="<?php echo $pay_amount; ?>" required name="pay_amount" class="form-control" id="exampleInputEmail1">
+                                                                    </div>
+                                                                    <div class="form-group col-md-12">
+                                                                        <label for="">Payment Description</label>
+                                                                        <textarea type="text" required name="pay_desc" class="form-control" id="exampleInputEmail1"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="text-right">
+                                                                    <button type="submit" name="add_payment" class="btn btn-primary">Pay Order</button>
+                                                                </div>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
