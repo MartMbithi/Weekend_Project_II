@@ -52,8 +52,22 @@ if (isset($_POST['update_order'])) {
         $err = "Failed!, Please Try Again Later";
     }
 }
-/* Delete Invoice */
 
+/* Delete Invoice */
+if (isset($_POST['delete_order'])) {
+    $order_id = $_POST['order_id'];
+
+    /* Delete */
+    $sql = "DELETE FROM orders WHERE order_id = ?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param('s', $order_id);
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Order Deleted";
+    } else {
+        $err = "Failed!, Please Try Again Later";
+    }
+}
 /* Pay Invoice */
 /* Load Header Partial */
 require_once('partials/head.php');
