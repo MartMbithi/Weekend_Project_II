@@ -101,7 +101,7 @@ require_once('partials/head.php');
                         <div class="col-md-6 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0">
                             <!-- Page title + Go Back button -->
                             <div class="d-inline-block">
-                                <h5 class="h3 font-weight-400 mb-0 text-white">Productss - Cereals</h5>
+                                <h5 class="h3 font-weight-400 mb-0 text-white">Products - Cereals</h5>
                             </div>
                             <!-- Additional info -->
                         </div>
@@ -325,7 +325,7 @@ require_once('partials/head.php');
                                                                 <h4>Delete <?php echo $products->product_name; ?> </h4>
                                                                 <br>
                                                                 <!-- Hide This -->
-                                                                <input type="hidden" name="product_name" value="<?php echo $products->product_name; ?>">
+                                                                <input type="hidden" name="product_id" value="<?php echo $products->product_id; ?>">
                                                                 <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
                                                                 <input type="submit" name="delete_product" value="Delete" class="text-center btn btn-danger">
                                                             </div>
