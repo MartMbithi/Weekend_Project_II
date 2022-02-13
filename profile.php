@@ -4,6 +4,33 @@ require_once('config/checklogin.php');
 require_once('config/config.php');
 check_login();
 /* Update Profile */
+if (isset($_POST['update_profile'])) {
+    $user_id = $_SESSION['user_id'];
+    $user_name = $_POST['user_name'];
+    $user_idno = $_POST['user_idno'];
+    $user_email = $_POST['user_email'];
+    $user_phoneno = $_POST['user_phoneno'];
+    $user_address = $_POST['user_address'];
+
+    /* Persist */
+    $sql = "UPDATE users SET user_name =?, user_idno =?, user_email =?, user_phoneno =?, user_address =? WHERE user_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'ssssss',
+        $user_name,
+        $user_idno,
+        $user_email,
+        $user_phoneno,
+        $user_address,
+        $user_id
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Profile Updated";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 
 /* Changhe Password */
 /* Load Header Partial */
