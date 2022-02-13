@@ -169,19 +169,19 @@ require_once('partials/analytics.php');
                                             <tr>
                                                 <td>
                                                     <b># :</b> <?php echo $orders->product_code; ?><br>
-                                                    <b>Name :</b> <?php echo $order->product_name; ?><br>
-                                                    <b>Category: </b> <?php echo $order->category_name; ?>
+                                                    <b>Name :</b> <?php echo $orders->product_name; ?><br>
+                                                    <b>Category: </b> <?php echo $orders->category_name; ?>
                                                 </td>
                                                 <td>
                                                     <b># :</b> <?php echo $orders->user_number; ?><br>
-                                                    <b>Name :</b> <?php echo $order->user_name; ?><br>
-                                                    <b>ID No: </b> <?php echo $order->user_idno; ?>
+                                                    <b>Name :</b> <?php echo $orders->user_name; ?><br>
+                                                    <b>ID No: </b> <?php echo $orders->user_idno; ?>
                                                 </td>
                                                 <td>
                                                     <b># :</b> <?php echo $orders->order_code; ?><br>
-                                                    <b>QTY :</b> <?php echo $order->order_qty; ?> Kgs<br>
-                                                    <b>Status : </b> <?php echo $order->order_status; ?><br>
-                                                    <b>Delivery Date: </b> <?php echo date('d M Y', strtotime($order->order_delivery_time)); ?>
+                                                    <b>QTY :</b> <?php echo $orders->order_qty; ?> Kgs<br>
+                                                    <b>Status : </b> <?php echo $orders->order_status; ?><br>
+                                                    <b>Delivery Date: </b> <?php echo date('d M Y', strtotime($orders->order_delivery_time)); ?>
                                                 </td>
                                             </tr>
                                         <?php
