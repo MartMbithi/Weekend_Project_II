@@ -233,7 +233,6 @@ require_once('partials/head.php');
                             <table class="table table-bordered text-truncate" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
-                                        <th>Code</th>
                                         <th>Name</th>
                                         <th>Category</th>
                                         <th>Farmer</th>
@@ -253,9 +252,8 @@ require_once('partials/head.php');
                                     while ($products = $res->fetch_object()) {
                                     ?>
                                         <tr>
-                                            <td><?php echo $products->product_code; ?></td>
-                                            <td><?php echo $products->product_name; ?></td>
-                                            <td><?php echo $products->category_code . ' - ' . $products->category_name; ?></td>
+                                            <td><?php echo $products->product_code; ?> <?php echo $products->product_name; ?></td>
+                                            <td><?php echo  $products->category_name; ?></td>
                                             <td><?php echo $products->user_number . ' - ' . $products->user_name; ?></td>
                                             <td><?php echo $products->product_quantity; ?> Kgs</td>
                                             <td><?php echo date('d M Y', strtotime($products->product_date_harvested)); ?> </td>

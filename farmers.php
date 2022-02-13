@@ -13,7 +13,7 @@ if (isset($_POST['add_farmer'])) {
     $user_phoneno = $_POST['user_phoneno'];
     $user_address = $_POST['user_address'];
     $user_access_level = 'Farmer';
-    $user_account_status  = 'Verified';
+    $user_acc_status  = 'Verified';
     $user_password = sha1(md5('Farmer')); /* Default Password */
 
     /* Avoid Data Replication Exists */
