@@ -10,21 +10,23 @@ if (isset($_POST['add_order'])) {
     $order_code = $a . $b;
     $order_qty = $_POST['order_qty'];
     $order_delivery_time = $_POST['order_delivery_time'];
+    $order_created_at = date('d M Y');
 
     /* Persist */
-    $sql = "INSERT INTO orders (order_product_id, order_code, order_qty, order_delivery_time)
-    VALUES(?,?,?,?)";
+    $sql = "INSERT INTO orders (order_product_id, order_code, order_qty, order_delivery_time, order_created_at)
+    VALUES(?,?,?,?,?)";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
-        'ssss',
+        'sssss',
         $order_product_id,
         $order_code,
         $order_qty,
-        $order_delivery_time
+        $order_delivery_time,
+        $order_created_at
     );
     $prepare->execute();
     if ($prepare) {
-        $success = "Order Posted And Invoice #:$order_code Posted";
+        $success = "Order Posted And Invoice # $order_code Posted";
     } else {
         $err = "Failed!, Please Try Again";
     }
@@ -124,7 +126,7 @@ require_once('partials/head.php');
                         <div class="col-md-6 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0">
                             <!-- Page title + Go Back button -->
                             <div class="d-inline-block">
-                                <h5 class="h3 font-weight-400 mb-0 text-white">Users - Farmers</h5>
+                                <h5 class="h3 font-weight-400 mb-0 text-white">Orders </h5>
                             </div>
                             <!-- Additional info -->
                         </div>
@@ -132,7 +134,7 @@ require_once('partials/head.php');
                         </div>
                     </div>
                     <div class="text-right">
-                        <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-warning"> Register New Farmer</button>
+                        <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-warning"> Register New Order</button>
                     </div>
                     <br>
                     <!-- Add Modal -->
@@ -141,7 +143,7 @@ require_once('partials/head.php');
                             <div class="modal-content">
                                 <div class="modal-header align-items-center">
                                     <div class="modal-title">
-                                        <h6 class="mb-0">Register New Farmer</h6>
+                                        <h6 class="mb-0">Register New Order</h6>
                                     </div>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
@@ -151,28 +153,32 @@ require_once('partials/head.php');
                                     <form method="post" enctype="multipart/form-data" role="form">
                                         <div class="row">
                                             <div class="form-group col-md-12">
-                                                <label for="">Full Name</label>
-                                                <input type="text" required name="user_name" class="form-control" id="exampleInputEmail1">
+                                                <label for="">Product Details</label>
+                                                <select name="order_product_id" style="width: 100%;" required class="basic form-control">
+                                                    <?php
+                                                    $ret = "SELECT * FROM products p 
+                                                    INNER JOIN users u ON u.user_id  = p.product_user_id";
+                                                    $stmt = $mysqli->prepare($ret);
+                                                    $stmt->execute(); //ok
+                                                    $res = $stmt->get_result();
+                                                    while ($products = $res->fetch_object()) {
+                                                    ?>
+                                                        <option value="<?php echo $products->product_id; ?>"><?php echo $products->product_code . ' - ' . $products->product_name . ' Produced By ' . $products->user_name; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label for="">Order Quantity (Kgs)</label>
+                                                <input type="text" required name="order_qty" class="form-control" id="exampleInputEmail1">
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label for="">National ID Number</label>
-                                                <input type="text" required name="user_idno" class="form-control" id="exampleInputEmail1">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="">Phone Number</label>
-                                                <input type="text" required name="user_phoneno" class="form-control" id="exampleInputEmail1">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="">Email Address</label>
-                                                <input type="text" name="user_email" class="form-control" id="exampleInputEmail1">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="">Address</label>
-                                                <input type="text" name="user_address" class="form-control" id="exampleInputEmail1">
+                                                <label for="">Expected Delivery Time</label>
+                                                <input type="date" required name="order_delivery_time" class="form-control" id="exampleInputEmail1">
                                             </div>
                                         </div>
                                         <div class="text-right">
-                                            <button type="submit" name="add_farmer" class="btn btn-primary">Register Farmer</button>
+                                            <button type="submit" name="add_order" class="btn btn-primary">Submit Order</button>
                                         </div>
                                     </form>
                                 </div>
