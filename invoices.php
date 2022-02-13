@@ -240,7 +240,7 @@ require_once('partials/head.php');
                                                 <a data-toggle="modal" href="#delete_<?php echo $orders->order_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
                                             </td>
                                             <!-- Pay Order -->
-                                            <div class="modal fade fixed-right" id="order_<?php echo $orders->order_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal fade fixed-right" id="pay_<?php echo $orders->order_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                                 <div class="modal-dialog  modal-xl" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header align-items-center">
@@ -271,7 +271,22 @@ require_once('partials/head.php');
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-
+                                                            <form method="post" enctype="multipart/form-data" role="form">
+                                                                <div class="row">
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="">Order Quantity (Kgs)</label>
+                                                                        <input type="hidden" value="<?php echo $orders->order_id; ?>" required name="order_id" class="form-control" id="exampleInputEmail1">
+                                                                        <input type="text" value="<?php echo $orders->order_qty; ?>" required name="order_qty" class="form-control" id="exampleInputEmail1">
+                                                                    </div>
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="">Expected Delivery Time</label>
+                                                                        <input type="date" value="<?php echo $orders->order_delivery_time; ?>" required name="order_delivery_time" class="form-control" id="exampleInputEmail1">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="text-right">
+                                                                    <button type="submit" name="update_order" class="btn btn-primary">Update Order</button>
+                                                                </div>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
