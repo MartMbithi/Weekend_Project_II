@@ -359,7 +359,6 @@ require_once('partials/head.php');
             </div>
         </div>
     </div>
-    </div>
     <!-- Scripts -->
     <?php require_once('partials/scripts.php'); ?>
 </body>
