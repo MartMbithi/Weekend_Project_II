@@ -212,7 +212,7 @@ require_once('partials/head.php');
                             <h6 class="mb-0">Registered Users - Farmers</h6>
                         </div>
                         <div class="card-body py-3 flex-grow-1">
-                            <table class="table table-bordered text-truncate" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <table class="table table-bordered table-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
                                         <th>Number</th>
@@ -221,6 +221,7 @@ require_once('partials/head.php');
                                         <th>Email</th>
                                         <th>Phone No</th>
                                         <th>Address</th>
+                                        <th>Manage</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -232,12 +233,21 @@ require_once('partials/head.php');
                                     while ($users = $res->fetch_object()) {
                                     ?>
                                         <tr>
-                                            <td><?php echo $products->product_code; ?></td>
-                                            <td><?php echo $products->product_name; ?></td>
-                                            <td><?php echo $products->category_code . ' - ' . $products->category_name; ?></td>
-                                            <td><?php echo $products->user_number . ' - ' . $products->user_name; ?></td>
-                                            <td><?php echo $products->product_quantity; ?> Kgs</td>
-                                            <td><?php echo date('d M Y', strtotime($products->product_date_harvested)); ?> </td>
+                                            <td><?php echo $users->user_number; ?></td>
+                                            <td>
+                                                <?php echo $users->user_name;
+                                                /* Green Badge If Verified */
+                                                if ($users->user_acc_status == 'Verified') {
+                                                ?>
+                                                    <span class="badge badge-success"><i class="fas fa-check"></i> Verified</span>
+                                                <?php } else { ?>
+                                                    <span class="badge badge-danger"><i class="fas fa-exclamation"></i> Pending</span>
+                                                <?php } ?>
+                                            </td>
+                                            <td><?php echo $users->user_idno; ?></td>
+                                            <td><?php echo $users->user_email; ?></td>
+                                            <td><?php echo $users->user_phoneno; ?></td>
+                                            <td><?php echo $users->user_address; ?></td>
                                             <td>
                                                 <a data-toggle="modal" href="#update_<?php echo $users->user_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
                                                 <a data-toggle="modal" href="#delete_<?php echo $users->user_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
@@ -255,7 +265,34 @@ require_once('partials/head.php');
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-
+                                                            <form method="post" enctype="multipart/form-data" role="form">
+                                                                <div class="row">
+                                                                    <div class="form-group col-md-12">
+                                                                        <label for="">Full Name</label>
+                                                                        <input type="text" required name="user_name" value="<?php echo $users->user_name; ?>" class="form-control" id="exampleInputEmail1">
+                                                                        <input type="hidden" required name="user_id" value="<?php echo $users->user_id; ?>" class="form-control" id="exampleInputEmail1">
+                                                                    </div>
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="">National ID Number</label>
+                                                                        <input type="text" required name="user_idno" value="<?php echo $users->user_idno; ?>" class="form-control" id="exampleInputEmail1">
+                                                                    </div>
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="">Phone Number</label>
+                                                                        <input type="text" required name="user_phoneno" value="<?php echo $users->user_phoneno; ?>" class="form-control" id="exampleInputEmail1">
+                                                                    </div>
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="">Email Address</label>
+                                                                        <input type="text" name="user_email" value="<?php echo $users->user_email; ?>" class="form-control" id="exampleInputEmail1">
+                                                                    </div>
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="">Address</label>
+                                                                        <input type="text" name="user_address" value="<?php echo $users->user_address; ?>" class="form-control" id="exampleInputEmail1">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="text-right">
+                                                                    <button type="submit" name="update_farmer" class="btn btn-primary">Update</button>
+                                                                </div>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
