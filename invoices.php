@@ -68,7 +68,38 @@ if (isset($_POST['delete_order'])) {
         $err = "Failed!, Please Try Again Later";
     }
 }
+
 /* Pay Invoice */
+if (isset($_POST['add_payment'])) {
+    $pay_order_id = $_POST['pay_order_id'];
+    $pay_code = $paycode;
+    $pay_amount = $_POST['pay_amount'];
+    $pay_desc = $_POST['pay_desc'];
+
+    /* Persist */
+    $sql = "INSERT INTO payments (pay_order_id, pay_code, pay_amount, pay_desc)
+    VALUES(?,?,?,?,?)";
+    $order_sql = "UPDATE orders SET order_payment_status = 'Paid' WHERE order_id  = '$pay_order_id'";
+
+    $prepare  = $mysqli->prepare($sql);
+    $order_prepare = $mysqli->prepare($order_sql);
+
+    $bind = $prepare->bind_param(
+        'ssss',
+        $pay_order_id,
+        $pay_code,
+        $pay_amount,
+        $pay_desc
+    );
+    $prepare->execute();
+    $order_prepare->execute();
+
+    if ($prepare && $order_prepare) {
+        $success = "Order Payment Posted";
+    } else {
+        $err = "Failed!, Please Try Again Later";
+    }
+}
 /* Load Header Partial */
 require_once('partials/head.php');
 ?>
