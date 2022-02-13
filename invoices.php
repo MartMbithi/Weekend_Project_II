@@ -29,8 +29,31 @@ if (isset($_POST['add_order'])) {
         $err = "Failed!, Please Try Again";
     }
 }
+
 /* Update Invoice */
+if (isset($_POST['update_order'])) {
+    $order_id = $_POST['order_id'];
+    $order_qty = $_POST['order_qty'];
+    $order_delivery_time = $_POST['order_delivery_time'];
+
+    /* Persist */
+    $sql = "UPDATE orders SET order_qty =?, order_delivery_time =? WHERE order_id =?";
+    $prepare  = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'sss',
+        $order_qty,
+        $order_delivery_time,
+        $order_id
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Order Updated";
+    } else {
+        $err = "Failed!, Please Try Again Later";
+    }
+}
 /* Delete Invoice */
+
 /* Pay Invoice */
 /* Load Header Partial */
 require_once('partials/head.php');
