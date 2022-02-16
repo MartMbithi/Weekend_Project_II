@@ -4,30 +4,6 @@ require_once('config/checklogin.php');
 require_once('config/codeGen.php');
 require_once('config/config.php');
 check_login();
-/* Delete Payment */
-if (isset($_POST['delete_payment'])) {
-    $pay_id = $_POST['pay_id'];
-    $order_id = $_POST['order_id'];
-    $order_payment_status = 'Pending';
-    /* Delete */
-    $sql = "DELETE FROM payments WHERE pay_id = ? ";
-    $order = "UPDATE orders SET order_payment_status = ? WHERE order_id =?";
-
-    $prepare = $mysqli->prepare($sql);
-    $order_prepare = $mysqli->prepare($order);
-
-    $bind = $prepare->bind_param('s', $pay_id);
-    $order_bind = $order_prepare->bind_param('ss', $order_payment_status, $order_id);
-
-    $prepare->execute();
-    $order_prepare->execute();
-
-    if ($prepare && $order_prepare) {
-        $success = "Payment Deleted And Order Reverted";
-    } else {
-        $err = "Failed!, Please Try Again";
-    }
-}
 /* Load Header Partial */
 require_once('partials/head.php');
 ?>
@@ -52,7 +28,7 @@ require_once('partials/head.php');
                         <div class="col-md-6 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0">
                             <!-- Page title + Go Back button -->
                             <div class="d-inline-block">
-                                <h5 class="h3 font-weight-400 mb-0 text-white">Payments</h5>
+                                <h5 class="h3 font-weight-400 mb-0 text-white">Reports</h5>
                             </div>
                             <!-- Additional info -->
                         </div>
@@ -66,15 +42,14 @@ require_once('partials/head.php');
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h6 class="mb-0">Registered Invoices Payments</h6>
+                            <h6 class="mb-0">1. Payments</h6>
                         </div>
                         <div class="card-body py-3 flex-grow-1">
-                            <table class="table table-bordered text-truncate" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <table class="table table-bordered text-truncate report_table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
                                         <th>Order Details</th>
                                         <th>Payment Details</th>
-                                        <th>Manage</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -98,40 +73,21 @@ require_once('partials/head.php');
                                                 <b>Amount :</b> <?php echo number_format($payments->pay_amount, 2); ?><br>
                                                 <b>Date: </b> <?php echo date('d M Y g:ia', strtotime($payments->pay_date_posted)); ?>
                                             </td>
-                                            <td>
-                                                <a data-toggle="modal" href="#delete_<?php echo $payments->pay_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
-                                            </td>
-
-                                            <!-- Delete Modal -->
-                                            <div class="modal fade" id="delete_<?php echo $payments->pay_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">CONFIRM DELETE</h5>
-                                                            <button type="button" class="close" data-dismiss="modal">
-                                                                <span>&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <form method="POST">
-                                                            <div class="modal-body text-center text-danger">
-                                                                <h4>Delete Payment <?php echo $payments->pay_code; ?> </h4>
-                                                                <br>
-                                                                <!-- Hide This -->
-                                                                <input type="hidden" name="order_id" value="<?php echo $payments->order_id; ?>">
-                                                                <input type="hidden" name="pay_id" value="<?php echo $payments->pay_id; ?>">
-                                                                <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
-                                                                <input type="submit" name="delete_payment" value="Delete" class="text-center btn btn-danger">
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </tr>
                                     <?php
                                     }
                                     ?>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="mb-0">2. Orders</h6>
+                        </div>
+                        <div class="card-body py-3 flex-grow-1">
+                            
                         </div>
                     </div>
 
