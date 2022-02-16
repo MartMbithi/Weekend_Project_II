@@ -63,7 +63,7 @@
     });
 
     $(document).ready(function() {
-        $('#export-data-table').DataTable({
+        $('.report_table').DataTable({
             dom: 'Bfrtip',
             buttons: [
                 'csv', 'excel', 'pdf', 'print'

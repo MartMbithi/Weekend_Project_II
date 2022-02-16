@@ -45,7 +45,7 @@ require_once('partials/head.php');
                             <h6 class="mb-0">1. Payments</h6>
                         </div>
                         <div class="card-body py-3 flex-grow-1">
-                            <table class="table table-bordered text-truncate table-reponsive report_table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <table class="table-bordered text-truncate table-reponsive report_table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
                                         <th>Order Details</th>
@@ -87,7 +87,7 @@ require_once('partials/head.php');
                             <h6 class="mb-0">2. Orders</h6>
                         </div>
                         <div class="card-body py-3 flex-grow-1">
-                            <table class="table table-bordered text-truncate table-reponsive report_table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <table class="table-bordered text-truncate report_table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
                                         <th>Product Details</th>
@@ -141,7 +141,7 @@ require_once('partials/head.php');
                             <h6 class="mb-0">3. Products</h6>
                         </div>
                         <div class="card-body py-3 flex-grow-1">
-                            <table class="table table-bordered text-truncate table-reponsive report_table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <table class="table-bordered text-truncate report_table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
@@ -181,7 +181,7 @@ require_once('partials/head.php');
                             <h6 class="mb-0">4. Farmers</h6>
                         </div>
                         <div class="card-body py-3 flex-grow-1">
-                            <table class="table table-bordered table-responsive report_table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <table class="table-bordered report_table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
                                         <th>Number</th>
@@ -190,12 +190,53 @@ require_once('partials/head.php');
                                         <th>Email</th>
                                         <th>Phone No</th>
                                         <th>Address</th>
-                                        <th>Manage</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $ret = "SELECT * FROM users WHERE user_access_level ='Farmer'";
+                                    $stmt = $mysqli->prepare($ret);
+                                    $stmt->execute(); //ok
+                                    $res = $stmt->get_result();
+                                    while ($users = $res->fetch_object()) {
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $users->user_number; ?></td>
+                                            <td>
+                                                <?php echo $users->user_name; ?>
+                                            </td>
+                                            <td><?php echo $users->user_idno; ?></td>
+                                            <td><?php echo $users->user_email; ?></td>
+                                            <td><?php echo $users->user_phoneno; ?></td>
+                                            <td><?php echo $users->user_address; ?></td>
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="mb-0">5. Staffs</h6>
+                        </div>
+                        <div class="card-body py-3 flex-grow-1">
+                            <table class="table-bordered report_table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>Number</th>
+                                        <th>Names</th>
+                                        <th>ID No</th>
+                                        <th>Email</th>
+                                        <th>Phone No</th>
+                                        <th>Address</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $ret = "SELECT * FROM users WHERE user_access_level ='Staff'";
                                     $stmt = $mysqli->prepare($ret);
                                     $stmt->execute(); //ok
                                     $res = $stmt->get_result();
