@@ -99,7 +99,9 @@ require_once('partials/head.php');
                                                 <b>Date: </b> <?php echo date('d M Y g:ia', strtotime($payments->pay_date_posted)); ?>
                                             </td>
                                             <td>
-                                                <a data-toggle="modal" href="#delete_<?php echo $payments->pay_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
+                                                <?php if ($_SESSION['user_access_level'] == 'admin') { ?>
+                                                    <a data-toggle="modal" href="#delete_<?php echo $payments->pay_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
+                                                <?php } ?>
                                             </td>
 
                                             <!-- Delete Modal -->
