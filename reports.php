@@ -45,7 +45,7 @@ require_once('partials/head.php');
                             <h6 class="mb-0">1. Payments</h6>
                         </div>
                         <div class="card-body py-3 flex-grow-1">
-                            <table class="table table-bordered text-truncate report_table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <table class="table table-bordered text-truncate table-reponsive report_table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
                                         <th>Order Details</th>
@@ -87,7 +87,7 @@ require_once('partials/head.php');
                             <h6 class="mb-0">2. Orders</h6>
                         </div>
                         <div class="card-body py-3 flex-grow-1">
-                            <table class="table table-bordered text-truncate report_table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <table class="table table-bordered text-truncate table-reponsive report_table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
                                         <th>Product Details</th>
@@ -136,6 +136,88 @@ require_once('partials/head.php');
                         </div>
                     </div>
 
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="mb-0">3. Products</h6>
+                        </div>
+                        <div class="card-body py-3 flex-grow-1">
+                            <table class="table table-bordered text-truncate table-reponsive report_table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Category</th>
+                                        <th>Farmer</th>
+                                        <th>Qty</th>
+                                        <th>Date Harvested</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $ret = "SELECT * FROM products p INNER JOIN 
+                                    product_categories pc ON p.product_category_id = pc.category_id
+                                    INNER JOIN users u ON u.user_id  = p.product_user_id";
+                                    $stmt = $mysqli->prepare($ret);
+                                    $stmt->execute(); //ok
+                                    $res = $stmt->get_result();
+                                    while ($products = $res->fetch_object()) {
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $products->product_code; ?> <?php echo $products->product_name; ?></td>
+                                            <td><?php echo  $products->category_name; ?></td>
+                                            <td><?php echo $products->user_number . ' - ' . $products->user_name; ?></td>
+                                            <td><?php echo $products->product_quantity; ?> Kgs</td>
+                                            <td><?php echo date('d M Y', strtotime($products->product_date_harvested)); ?> </td>
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="mb-0">4. Farmers</h6>
+                        </div>
+                        <div class="card-body py-3 flex-grow-1">
+                            <table class="table table-bordered table-responsive report_table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>Number</th>
+                                        <th>Names</th>
+                                        <th>ID No</th>
+                                        <th>Email</th>
+                                        <th>Phone No</th>
+                                        <th>Address</th>
+                                        <th>Manage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $ret = "SELECT * FROM users WHERE user_access_level ='Farmer'";
+                                    $stmt = $mysqli->prepare($ret);
+                                    $stmt->execute(); //ok
+                                    $res = $stmt->get_result();
+                                    while ($users = $res->fetch_object()) {
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $users->user_number; ?></td>
+                                            <td>
+                                                <?php echo $users->user_name; ?>
+                                            </td>
+                                            <td><?php echo $users->user_idno; ?></td>
+                                            <td><?php echo $users->user_email; ?></td>
+                                            <td><?php echo $users->user_phoneno; ?></td>
+                                            <td><?php echo $users->user_address; ?></td>
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
