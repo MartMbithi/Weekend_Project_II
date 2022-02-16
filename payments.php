@@ -4,6 +4,30 @@ require_once('config/checklogin.php');
 require_once('config/codeGen.php');
 require_once('config/config.php');
 check_login();
+/* Delete Payment */
+if (isset($_POST['delete_payment'])) {
+    $pay_id = $_POST['pay_id'];
+    $order_id = $_POST['order_id'];
+    $order_payment_status = 'Pending';
+    /* Delete */
+    $sql = "DELETE * FROM payments WHERE payment_id = ? ";
+    $order = "UPDATE orders SET order_payment_status = ? WHERE order_id =?";
+
+    $prepare = $mysqli->prepare($sql);
+    $order_prepare = $mysqli->prepare($order);
+
+    $bind = $prepare->bind_param('s', $pay_id);
+    $order_bind = $prepare->bind_param('s', $order_payment_status, $order_id);
+
+    $prepare->execute();
+    $order_prepare->execute();
+
+    if ($prepare && $order_prepare) {
+        $success = "Payment Deleted And Order Reverted";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 /* Load Header Partial */
 require_once('partials/head.php');
 ?>
@@ -32,9 +56,8 @@ require_once('partials/head.php');
                             </div>
                             <!-- Additional info -->
                         </div>
-                        <div class="col-md-6 d-flex align-items-center justify-content-between justify-content-md-end">
-                        </div>
                     </div>
+                    <br><br>
                 </div>
             </div>
             <!-- Stats -->
@@ -57,8 +80,8 @@ require_once('partials/head.php');
                                 <tbody>
                                     <?php
                                     $ret = "SELECT * FROM payments p
-                                    INNER JOIN orders o ON o.order_id = p.payment_order_id 
-                                    INNER JOIN products p ON p.product_id = o.order_product_id";
+                                    INNER JOIN orders o ON o.order_id = p.pay_order_id 
+                                    INNER JOIN products pr ON pr.product_id = o.order_product_id ";
                                     $stmt = $mysqli->prepare($ret);
                                     $stmt->execute(); //ok
                                     $res = $stmt->get_result();
@@ -76,11 +99,11 @@ require_once('partials/head.php');
                                                 <b>Date: </b> <?php echo date('d M Y g:ia', strtotime($payments->pay_date_posted)); ?>
                                             </td>
                                             <td>
-                                                <a data-toggle="modal" href="#delete_<?php echo $payments->payment_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
+                                                <a data-toggle="modal" href="#delete_<?php echo $payments->pay_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
                                             </td>
 
                                             <!-- Delete Modal -->
-                                            <div class="modal fade" id="delete_<?php echo $payments->payment_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="delete_<?php echo $payments->pay_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -91,11 +114,11 @@ require_once('partials/head.php');
                                                         </div>
                                                         <form method="POST">
                                                             <div class="modal-body text-center text-danger">
-                                                                <h4>Delete <?php echo $payments->payment_code; ?> </h4>
+                                                                <h4>Delete Payment <?php echo $payments->pay_code; ?> </h4>
                                                                 <br>
                                                                 <!-- Hide This -->
                                                                 <input type="hidden" name="order_id" value="<?php echo $payments->order_id; ?>">
-                                                                <input type="hidden" name="payment_id" value="<?php echo $payments->payment_id; ?>">
+                                                                <input type="hidden" name="payment_id" value="<?php echo $payments->pay_id; ?>">
                                                                 <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
                                                                 <input type="submit" name="delete_payment" value="Delete" class="text-center btn btn-danger">
                                                             </div>
