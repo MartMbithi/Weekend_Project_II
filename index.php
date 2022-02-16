@@ -19,7 +19,7 @@ if (isset($_POST['login'])) {
     $_SESSION['user_name'] = $user_name;
     $_SESSION['user_number'] = $user_number;
 
-    if ($rs && $user_access_level == "admin") {
+    if ($rs && $user_access_level == "admin" || $user_access_level == "Staff") {
         header("location:dashboard");
     } elseif ($rs && $user_access_level == "Farmer") {
         header("location:user_home");
