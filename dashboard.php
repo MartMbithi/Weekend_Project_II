@@ -11,7 +11,7 @@ require_once('partials/analytics.php');
 
 <body class="application application-offset">
     <!-- Chat modal -->
-    
+
     <!-- Application container -->
     <div class="container-fluid container-application">
         <!-- Sidenav -->
@@ -129,7 +129,7 @@ require_once('partials/analytics.php');
                                 <div class="row">
                                     <div class="col">
                                         <h6 class="text-muted mb-1">Total Payments</h6>
-                                        <span class="h3 font-weight-bold mb-0 ">Ksh <?php echo $total_payments; ?></span>
+                                        <span class="h3 font-weight-bold mb-0 ">Ksh <?php echo  number_format($total_payments, 2); ?></span>
                                     </div>
                                     <div class="col-auto">
                                         <i class="far fa-hand-holding-usd text-warning fa-4x"></i>
@@ -146,7 +146,7 @@ require_once('partials/analytics.php');
                                 <h6 class="mb-0">Recent Orders</h6>
                             </div>
                             <div class="card-body py-3 flex-grow-1">
-                                <table class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <table class="table table-bordered dt-responsive " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
                                         <tr>
                                             <th>Product Details</th>
@@ -198,7 +198,7 @@ require_once('partials/analytics.php');
                                 <h6 class="text-bold">Recent Registred Farmers</h6>
                             </div>
                             <div class="card-body py-3 flex-grow-1">
-                                <table class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <table class="table table-bordered table-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
                                         <tr>
                                             <th>Number</th>
