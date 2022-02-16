@@ -87,7 +87,52 @@ require_once('partials/head.php');
                             <h6 class="mb-0">2. Orders</h6>
                         </div>
                         <div class="card-body py-3 flex-grow-1">
-                            
+                            <table class="table table-bordered text-truncate report_table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>Product Details</th>
+                                        <th>Farmer Details</th>
+                                        <th>Order Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $ret = "SELECT * FROM orders o
+                                    INNER JOIN products p ON p.product_id = o.order_product_id
+                                    INNER JOIN product_categories c ON c.category_id = p.product_category_id
+                                    INNER JOIN users u ON u.user_id = p.product_user_id
+                                    ORDER BY o.order_created_at  ASC ";
+                                    $stmt = $mysqli->prepare($ret);
+                                    $stmt->execute(); //ok
+                                    $res = $stmt->get_result();
+                                    while ($orders = $res->fetch_object()) {
+                                        /* Payment Amount */
+                                        /* 1KG = 30 Shillings */
+                                        $pay_amount = $orders->order_qty * 30;
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <b># :</b> <?php echo $orders->product_code; ?><br>
+                                                <b>Name :</b> <?php echo $orders->product_name; ?><br>
+                                                <b>Category: </b> <?php echo $orders->category_name; ?>
+                                            </td>
+                                            <td>
+                                                <b># :</b> <?php echo $orders->user_number; ?><br>
+                                                <b>Name :</b> <?php echo $orders->user_name; ?><br>
+                                                <b>ID No: </b> <?php echo $orders->user_idno; ?>
+                                            </td>
+                                            <td>
+                                                <b># :</b> <?php echo $orders->order_code; ?><br>
+                                                <b>QTY :</b> <?php echo $orders->order_qty; ?> Kgs<br>
+                                                <b>Status : </b> <?php echo $orders->order_payment_status; ?><br>
+                                                <b>Delivery Date: </b> <?php echo date('d M Y', strtotime($orders->order_delivery_time)); ?>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
