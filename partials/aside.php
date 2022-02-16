@@ -30,7 +30,7 @@
         <!-- User info -->
         <!-- Actions -->
         <div class="w-100 mt-4 actions d-flex justify-content-between">
-            <a href="profile" class="action-item action-item-lg text-white pl-0">
+            <!--  <a href="profile" class="action-item action-item-lg text-white pl-0">
                 <i class="far fa-user"></i>
             </a>
             <a href="notifications" class="action-item action-item-lg text-white pr-0">
@@ -38,43 +38,72 @@
             </a>
             <a href="invoices" class="action-item action-item-lg text-white pr-0">
                 <i class="far fa-receipt"></i>
-            </a>
+            </a> -->
         </div>
     </div>
     <!-- Application nav -->
     <div class="nav-application clearfix">
-        <a href="dashboard" class="btn btn-square text-sm">
-            <span class="btn-inner--icon d-block"><i class="far fa-home fa-2x"></i></span>
-            <span class="btn-inner--icon d-block pt-2">Home</span>
-        </a>
-        <a href="categories" class="btn btn-square text-sm">
-            <span class="btn-inner--icon d-block"><i class="far fa-project-diagram fa-2x"></i></span>
-            <span class="btn-inner--icon d-block pt-2">Categories</span>
-        </a>
-        <a href="products" class="btn btn-square text-sm">
-            <span class="btn-inner--icon d-block"><i class="far fa-tasks fa-2x"></i></span>
-            <span class="btn-inner--icon d-block pt-2">Products</span>
-        </a>
-        <a href="farmers" class="btn btn-square text-sm">
-            <span class="btn-inner--icon d-block"><i class="far fa-users-cog fa-2x"></i></span>
-            <span class="btn-inner--icon d-block pt-2">Farmers</span>
-        </a>
-        <a href="staffs" class="btn btn-square text-sm">
-            <span class="btn-inner--icon d-block"><i class="far fa-users fa-2x"></i></span>
-            <span class="btn-inner--icon d-block pt-2">Staffs</span>
-        </a>
-        <a href="invoices" class="btn btn-square text-sm">
-            <span class="btn-inner--icon d-block"><i class="far fa-receipt fa-2x"></i></span>
-            <span class="btn-inner--icon d-block pt-2">Invoices</span>
-        </a>
-        <a href="payments" class="btn btn-square text-sm">
-            <span class="btn-inner--icon d-block"><i class="far fa-hand-holding-usd fa-2x"></i></span>
-            <span class="btn-inner--icon d-block pt-2">Payments</span>
-        </a>
+        <!-- Staff Side Menu -->
+        <?php if ($_SESSION['user_access_level'] == 'admin') { ?>
+            <a href="dashboard" class="btn btn-square text-sm">
+                <span class="btn-inner--icon d-block"><i class="far fa-home fa-2x"></i></span>
+                <span class="btn-inner--icon d-block pt-2">Home</span>
+            </a>
+            <a href="categories" class="btn btn-square text-sm">
+                <span class="btn-inner--icon d-block"><i class="far fa-project-diagram fa-2x"></i></span>
+                <span class="btn-inner--icon d-block pt-2">Categories</span>
+            </a>
+            <a href="products" class="btn btn-square text-sm">
+                <span class="btn-inner--icon d-block"><i class="far fa-tasks fa-2x"></i></span>
+                <span class="btn-inner--icon d-block pt-2">Products</span>
+            </a>
+            <a href="farmers" class="btn btn-square text-sm">
+                <span class="btn-inner--icon d-block"><i class="far fa-users-cog fa-2x"></i></span>
+                <span class="btn-inner--icon d-block pt-2">Farmers</span>
+            </a>
 
-        <a href="reports" class="btn btn-square text-sm">
-            <span class="btn-inner--icon d-block"><i class="far fa-file fa-2x"></i></span>
-            <span class="btn-inner--icon d-block pt-2">Reports</span>
-        </a>
+            <a href="staffs" class="btn btn-square text-sm">
+                <span class="btn-inner--icon d-block"><i class="far fa-users fa-2x"></i></span>
+                <span class="btn-inner--icon d-block pt-2">Staffs</span>
+            </a>
+            <a href="invoices" class="btn btn-square text-sm">
+                <span class="btn-inner--icon d-block"><i class="far fa-receipt fa-2x"></i></span>
+                <span class="btn-inner--icon d-block pt-2">Invoices</span>
+            </a>
+            <a href="payments" class="btn btn-square text-sm">
+                <span class="btn-inner--icon d-block"><i class="far fa-hand-holding-usd fa-2x"></i></span>
+                <span class="btn-inner--icon d-block pt-2">Payments</span>
+            </a>
+
+            <a href="reports" class="btn btn-square text-sm">
+                <span class="btn-inner--icon d-block"><i class="far fa-file fa-2x"></i></span>
+                <span class="btn-inner--icon d-block pt-2">Reports</span>
+            </a>
+        <?php } else { ?>
+            <a href="dashboard" class="btn btn-square text-sm">
+                <span class="btn-inner--icon d-block"><i class="far fa-home fa-2x"></i></span>
+                <span class="btn-inner--icon d-block pt-2">Home</span>
+            </a>
+            <a href="categories" class="btn btn-square text-sm">
+                <span class="btn-inner--icon d-block"><i class="far fa-project-diagram fa-2x"></i></span>
+                <span class="btn-inner--icon d-block pt-2">Categories</span>
+            </a>
+            <a href="products" class="btn btn-square text-sm">
+                <span class="btn-inner--icon d-block"><i class="far fa-tasks fa-2x"></i></span>
+                <span class="btn-inner--icon d-block pt-2">Products</span>
+            </a>
+            <a href="farmers" class="btn btn-square text-sm">
+                <span class="btn-inner--icon d-block"><i class="far fa-users-cog fa-2x"></i></span>
+                <span class="btn-inner--icon d-block pt-2">Farmers</span>
+            </a>
+            <a href="invoices" class="btn btn-square text-sm">
+                <span class="btn-inner--icon d-block"><i class="far fa-receipt fa-2x"></i></span>
+                <span class="btn-inner--icon d-block pt-2">Invoices</span>
+            </a>
+            <a href="payments" class="btn btn-square text-sm">
+                <span class="btn-inner--icon d-block"><i class="far fa-hand-holding-usd fa-2x"></i></span>
+                <span class="btn-inner--icon d-block pt-2">Payments</span>
+            </a>
+        <?php } ?>
     </div>
 </div>
