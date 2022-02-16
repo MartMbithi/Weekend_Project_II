@@ -67,7 +67,7 @@
             <span class="btn-inner--icon d-block"><i class="far fa-receipt fa-2x"></i></span>
             <span class="btn-inner--icon d-block pt-2">Invoices</span>
         </a>
-        <a href="paymentsl" class="btn btn-square text-sm">
+        <a href="payments" class="btn btn-square text-sm">
             <span class="btn-inner--icon d-block"><i class="far fa-hand-holding-usd fa-2x"></i></span>
             <span class="btn-inner--icon d-block pt-2">Payments</span>
         </a>
