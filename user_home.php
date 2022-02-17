@@ -46,7 +46,7 @@ require_once('partials/user_analytics.php');
                                 <div class="row">
                                     <div class="col">
                                         <h6 class="text-muted mb-1">My Products</h6>
-                                        <span class="h3 font-weight-bold mb-0 "><?php echo $farmers; ?></span>
+                                        <span class="h3 font-weight-bold mb-0 "><?php echo $products; ?></span>
                                     </div>
                                     <div class="col-auto">
                                         <i class="far fa-users-cog text-warning fa-4x"></i>
@@ -62,7 +62,7 @@ require_once('partials/user_analytics.php');
                                 <div class="row">
                                     <div class="col">
                                         <h6 class="text-muted mb-1">Unpaid Orders</h6>
-                                        <span class="h3 font-weight-bold mb-0 "><?php echo $staffs; ?></span>
+                                        <span class="h3 font-weight-bold mb-0 "><?php echo $unpaid_orders; ?></span>
                                     </div>
                                     <div class="col-auto">
                                         <i class="far fa-users text-warning fa-4x"></i>
@@ -78,7 +78,7 @@ require_once('partials/user_analytics.php');
                                 <div class="row">
                                     <div class="col">
                                         <h6 class="text-muted mb-1">Paid Orders</h6>
-                                        <span class="h3 font-weight-bold mb-0 "><?php echo $unpaid_orders; ?></span>
+                                        <span class="h3 font-weight-bold mb-0 "><?php echo $paid_orders; ?></span>
                                     </div>
                                     <div class="col-auto">
                                         <i class="far fa-exclamation text-warning fa-4x"></i>
@@ -94,7 +94,7 @@ require_once('partials/user_analytics.php');
                                 <div class="row">
                                     <div class="col">
                                         <h6 class="text-muted mb-1">Total Orders</h6>
-                                        <span class="h3 font-weight-bold mb-0 "><?php echo $paid_orders; ?></span>
+                                        <span class="h3 font-weight-bold mb-0 "><?php echo $all_orders; ?></span>
                                     </div>
                                     <div class="col-auto">
                                         <i class="far fa-file-check text-warning fa-4x"></i>
