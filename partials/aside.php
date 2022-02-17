@@ -42,7 +42,7 @@
         </div>
     </div>
     <!-- Application nav -->
-    <?php if ($_SESSION['user_acces_level'] == 'admin') { ?>
+    <?php if ($_SESSION['user_access_level'] == 'admin') { ?>
         <div class="nav-application clearfix">
             <!-- Staff Side Menu -->
             <a href="dashboard" class="btn btn-square text-sm">

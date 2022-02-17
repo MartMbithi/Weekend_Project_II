@@ -15,7 +15,7 @@ $stmt->close();
 /* 2. Upaid Invoices */
 $query = "SELECT COUNT(*)  FROM orders o
 INNER JOIN products p ON p.product_id = o.order_product_id 
-WHERE O.order_payment_status = 'Pending' AND  p.product_user_id = '$user_id'";
+WHERE o.order_payment_status = 'Pending' AND  p.product_user_id = '$user_id'";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();
 $stmt->bind_result($unpaid_orders);

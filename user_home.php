@@ -49,7 +49,7 @@ require_once('partials/user_analytics.php');
                                         <span class="h3 font-weight-bold mb-0 "><?php echo $products; ?></span>
                                     </div>
                                     <div class="col-auto">
-                                        <i class="far fa-users-cog text-warning fa-4x"></i>
+                                        <i class="far fa-list text-warning fa-4x"></i>
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +65,7 @@ require_once('partials/user_analytics.php');
                                         <span class="h3 font-weight-bold mb-0 "><?php echo $unpaid_orders; ?></span>
                                     </div>
                                     <div class="col-auto">
-                                        <i class="far fa-users text-warning fa-4x"></i>
+                                        <i class="far fa-exclamation text-warning fa-4x"></i>
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +81,7 @@ require_once('partials/user_analytics.php');
                                         <span class="h3 font-weight-bold mb-0 "><?php echo $paid_orders; ?></span>
                                     </div>
                                     <div class="col-auto">
-                                        <i class="far fa-exclamation text-warning fa-4x"></i>
+                                        <i class="far fa-check text-warning fa-4x"></i>
                                     </div>
                                 </div>
                             </div>
