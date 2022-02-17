@@ -266,7 +266,7 @@ require_once('partials/head.php');
                                                                     </div>
                                                                     <div class="form-group col-md-12">
                                                                         <label for="">Payment Description</label>
-                                                                        <textarea type="text" required name="pay_desc" class="form-control" id="exampleInputEmail1"></textarea>
+                                                                        <textarea type="text"  name="pay_desc" class="form-control" id="exampleInputEmail1"></textarea>
                                                                     </div>
                                                                 </div>
                                                                 <div class="text-right">

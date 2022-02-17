@@ -166,7 +166,6 @@ require_once('partials/head.php');
                                                 <label for="">Access Rights</label>
                                                 <select name="user_access_level" style="width: 100%;" required class="basic form-control">
                                                     <option>Staff</option>
-                                                    <option>admin</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-4">
