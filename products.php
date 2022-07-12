@@ -159,9 +159,13 @@ require_once('partials/head.php');
                                 <div class="modal-body">
                                     <form method="post" enctype="multipart/form-data" role="form">
                                         <div class="row">
-                                            <div class="form-group col-md-8">
+                                            <div class="form-group col-md-4">
                                                 <label for="">Name</label>
                                                 <input type="text" required name="product_name" class="form-control" id="exampleInputEmail1">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="">Price (Ksh)</label>
+                                                <input type="text" required name="product_price" class="form-control" id="exampleInputEmail1">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="">Code</label>
