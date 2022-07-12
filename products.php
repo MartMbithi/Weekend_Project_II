@@ -12,19 +12,21 @@ if (isset($_POST['add_product'])) {
     $product_name = $_POST['product_name'];
     $product_date_harvested = $_POST['product_date_harvested'];
     $product_quantity = $_POST['product_quantity'];
+    $product_price = $_POST['product_price'];
 
     /* Persist */
-    $sql = "INSERT INTO products(product_category_id, product_user_id, product_code, product_name, product_date_harvested, product_quantity)
-    VALUES(?,?,?,?,?,?)";
+    $sql = "INSERT INTO products(product_category_id, product_user_id, product_code, product_name, product_date_harvested, product_quantity, product_price)
+    VALUES(?,?,?,?,?,?,?)";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
-        'ssssss',
+        'sssssss',
         $product_category_id,
         $product_user_id,
         $product_code,
         $product_name,
         $product_date_harvested,
-        $product_quantity
+        $product_quantity,
+        $product_price
     );
     $prepare->execute();
     if ($prepare) {
@@ -41,16 +43,18 @@ if (isset($_POST['update_product'])) {
     $product_name = $_POST['product_name'];
     $product_date_harvested = $_POST['product_date_harvested'];
     $product_quantity = $_POST['product_quantity'];
+    $product_price = $_POST['product_price'];
 
     /* Persist */
-    $sql = "UPDATE products SET product_category_id = ?, product_name =?, product_date_harvested =?, product_quantity = ? WHERE product_id =?";
+    $sql = "UPDATE products SET product_category_id = ?, product_name =?, product_date_harvested =?, product_quantity = ?, product_price = ? WHERE product_id =?";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
-        'sssss',
+        'ssssss',
         $product_category_id,
         $product_name,
         $product_date_harvested,
         $product_quantity,
+        $product_price,
         $product_id
     );
     $prepare->execute();
