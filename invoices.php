@@ -217,8 +217,7 @@ require_once('partials/head.php');
                                     $res = $stmt->get_result();
                                     while ($orders = $res->fetch_object()) {
                                         /* Payment Amount */
-                                        /* 1KG = 30 Shillings */
-                                        $pay_amount = $orders->order_qty * 30;
+                                        $pay_amount = $orders->order_qty * $orders->product_price;
                                     ?>
                                         <tr>
                                             <td>
@@ -266,7 +265,7 @@ require_once('partials/head.php');
                                                                     </div>
                                                                     <div class="form-group col-md-12">
                                                                         <label for="">Payment Description</label>
-                                                                        <textarea type="text"  name="pay_desc" class="form-control" id="exampleInputEmail1"></textarea>
+                                                                        <textarea type="text" name="pay_desc" class="form-control" id="exampleInputEmail1"></textarea>
                                                                     </div>
                                                                 </div>
                                                                 <div class="text-right">

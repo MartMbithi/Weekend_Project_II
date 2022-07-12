@@ -12,19 +12,21 @@ if (isset($_POST['add_product'])) {
     $product_name = $_POST['product_name'];
     $product_date_harvested = $_POST['product_date_harvested'];
     $product_quantity = $_POST['product_quantity'];
+    $product_price = $_POST['product_price'];
 
     /* Persist */
-    $sql = "INSERT INTO products(product_category_id, product_user_id, product_code, product_name, product_date_harvested, product_quantity)
-    VALUES(?,?,?,?,?,?)";
+    $sql = "INSERT INTO products(product_category_id, product_user_id, product_code, product_name, product_date_harvested, product_quantity, product_price)
+    VALUES(?,?,?,?,?,?,?)";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
-        'ssssss',
+        'sssssss',
         $product_category_id,
         $product_user_id,
         $product_code,
         $product_name,
         $product_date_harvested,
-        $product_quantity
+        $product_quantity,
+        $product_price
     );
     $prepare->execute();
     if ($prepare) {
@@ -41,16 +43,18 @@ if (isset($_POST['update_product'])) {
     $product_name = $_POST['product_name'];
     $product_date_harvested = $_POST['product_date_harvested'];
     $product_quantity = $_POST['product_quantity'];
+    $product_price = $_POST['product_price'];
 
     /* Persist */
-    $sql = "UPDATE products SET product_category_id = ?, product_name =?, product_date_harvested =?, product_quantity = ? WHERE product_id =?";
+    $sql = "UPDATE products SET product_category_id = ?, product_name =?, product_date_harvested =?, product_quantity = ?, product_price = ? WHERE product_id =?";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
-        'sssss',
+        'ssssss',
         $product_category_id,
         $product_name,
         $product_date_harvested,
         $product_quantity,
+        $product_price,
         $product_id
     );
     $prepare->execute();
@@ -155,9 +159,13 @@ require_once('partials/head.php');
                                 <div class="modal-body">
                                     <form method="post" enctype="multipart/form-data" role="form">
                                         <div class="row">
-                                            <div class="form-group col-md-8">
+                                            <div class="form-group col-md-4">
                                                 <label for="">Name</label>
                                                 <input type="text" required name="product_name" class="form-control" id="exampleInputEmail1">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="">Price (Ksh)</label>
+                                                <input type="text" required name="product_price" class="form-control" id="exampleInputEmail1">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="">Code</label>
@@ -234,9 +242,9 @@ require_once('partials/head.php');
                                 <thead>
                                     <tr>
                                         <th>Name</th>
-                                        <th>Category</th>
                                         <th>Farmer</th>
                                         <th>Qty</th>
+                                        <th>Price</th>
                                         <th>Date Harvested</th>
                                         <th>Manage</th>
                                     </tr>
@@ -252,10 +260,14 @@ require_once('partials/head.php');
                                     while ($products = $res->fetch_object()) {
                                     ?>
                                         <tr>
-                                            <td><?php echo $products->product_code; ?> <?php echo $products->product_name; ?></td>
-                                            <td><?php echo  $products->category_name; ?></td>
-                                            <td><?php echo $products->user_number . ' - ' . $products->user_name; ?></td>
+                                            <td>
+                                                <?php echo $products->product_code; ?> <br>
+                                                <?php echo $products->product_name; ?> <br>
+                                                <?php echo  $products->category_name; ?>
+                                            </td>
+                                            <td><?php echo $products->user_number . ' <br> ' . $products->user_name; ?></td>
                                             <td><?php echo $products->product_quantity; ?> Kgs</td>
+                                            <td>Ksh <?php echo number_format($products->product_price, 2); ?></td>
                                             <td><?php echo date('d M Y', strtotime($products->product_date_harvested)); ?> </td>
                                             <td>
                                                 <a data-toggle="modal" href="#order_<?php echo $products->product_id; ?>" class="badge badge-success"><i class="fas fa-check"></i> Place Order</a>
@@ -315,10 +327,14 @@ require_once('partials/head.php');
                                                         <div class="modal-body">
                                                             <form method="post" enctype="multipart/form-data" role="form">
                                                                 <div class="row">
-                                                                    <div class="form-group col-md-8">
+                                                                    <div class="form-group col-md-4">
                                                                         <label for="">Name</label>
                                                                         <input type="text" required value="<?php echo $products->product_name; ?>" name="product_name" class="form-control" id="exampleInputEmail1">
                                                                         <input type="hidden" required value="<?php echo $products->product_id; ?>" name="product_id" class="form-control" id="exampleInputEmail1">
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label for="">Price (Ksh)</label>
+                                                                        <input type="text" required value="<?php echo $products->product_price; ?>" name="product_price" class="form-control" id="exampleInputEmail1">
                                                                     </div>
                                                                     <div class="form-group col-md-4">
                                                                         <label for="">Code</label>
@@ -366,7 +382,7 @@ require_once('partials/head.php');
                                                                     </div>
                                                                 </div>
                                                                 <div class="text-right">
-                                                                    <button type="submit" name="update_product" class="btn btn-primary">Register Product</button>
+                                                                    <button type="submit" name="update_product" class="btn btn-primary">Update Product</button>
                                                                 </div>
                                                             </form>
                                                         </div>
