@@ -91,7 +91,7 @@ require_once('partials/head.php');
                                     while ($orders = $res->fetch_object()) {
                                         /* Payment Amount */
                                         /* 1KG = 30 Shillings */
-                                        $pay_amount = $orders->order_qty * 30;
+                                        $pay_amount = $orders->order_qty * $orders->product_price;
                                     ?>
                                         <tr>
                                             <td>
